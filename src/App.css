@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
+:root {
+  --bg-color: #0a0a0f;
+  --text-color: #e8e6df;
+  --accent-color: #7fffb2;
+  --accent-soft: rgba(127, 255, 178, 0.08);
+  --accent-border: rgba(127, 255, 178, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Mono', 'Fira Code', 'Courier New', monospace;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+.root-layout {
+  min-height: 100vh;
+}
+
+/* Base Styles */
+h1, h2, h3 {
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hovers */
+.proj-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5) !important;
+}
+
+.skill-card:hover {
+  border-color: rgba(127, 255, 178, 0.3) !important;
+  transform: translateY(-4px) !important;
+}
+
+.hire-cta:hover {
+  background: var(--accent-color) !important;
+  color: var(--bg-color) !important;
+}
+
+.btn-primary:hover {
+  background: #5ee89a !important;
+  transform: translateY(-2px);
+}
+
+.btn-outline:hover {
+  border-color: rgba(232, 230, 223, 0.4) !important;
+}
+
+input:focus, textarea:focus {
+  border-color: rgba(127, 255, 178, 0.4) !important;
+}
+
+.footer-link:hover {
+  color: var(--accent-color) !important;
+}
