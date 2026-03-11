@@ -1,0 +1,54 @@
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    /* Use CSS variables for position updated via JS */
+    transform: translate3d(var(--x, 0), var(--y, 0), 0) translate(-50%, -50%);
+    will-change: transform;
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+.cursor-dot.hover {
+    width: 4px;
+    height: 4px;
+    background-color: #fff;
+}
+
+.cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    /* Hardware acceleration */
+    transform: translate3d(var(--x, 0), var(--y, 0), 0) translate(-50%, -50%);
+    will-change: transform;
+    background: rgba(127, 255, 178, 0.05);
+    backdrop-filter: blur(2px);
+    /* Transition only for non-positioning properties */
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-width 0.3s ease;
+}
+
+.cursor-ring.hover {
+    width: 70px;
+    height: 70px;
+    background: rgba(127, 255, 178, 0.15);
+    border-width: 2px;
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .cursor-dot, .cursor-ring {
+        display: none;
+    }
+}

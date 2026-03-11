@@ -19,6 +19,16 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   overflow-x: hidden;
+  cursor: none;
+}
+
+html {
+  cursor: none;
+}
+
+/* Fallback for when custom cursor might fail or on specific elements */
+a, button, [role="button"], .proj-card, .nav-link, .hire-cta {
+  cursor: none;
 }
 
 ::-webkit-scrollbar {

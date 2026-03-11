@@ -6,6 +6,7 @@ import { Skills } from './components/Skills/Skills'
 import { Projects } from './components/Projects/Projects'
 import { Contact } from './components/Contact/Contact'
 import { Footer } from './components/Footer/Footer'
+import { CustomCursor } from './components/Common/CustomCursor'
 import './App.css'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
 
     return (
         <div className="root-layout">
+            <CustomCursor />
             <Header active={active} setActive={setActive} scrollTo={scrollTo} />
             <Hero scrollTo={scrollTo} />
             <About />
