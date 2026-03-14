@@ -50,6 +50,7 @@
 
 .code-line {
     margin: 0;
+    will-change: clip-path;
 }
 
 /* Responsiveness */
