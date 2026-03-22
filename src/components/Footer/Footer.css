@@ -1,6 +1,6 @@
 .footer {
     padding: 64px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,7 +8,7 @@
 
 .footer-logo {
     font-size: 0.82rem;
-    color: rgba(232, 230, 223, 0.3);
+    color: var(--text-subtle);
 }
 
 .footer-links {
@@ -18,7 +18,7 @@
 
 .footer-link {
     font-size: 0.72rem;
-    color: rgba(232, 230, 223, 0.35);
+    color: var(--text-subtle);
     text-decoration: none;
     transition: color 0.25s;
     text-transform: uppercase;

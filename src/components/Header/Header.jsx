@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NAV_LINKS } from "../../constants";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import "./Header.css";
 
 export function Header({ active, setActive, scrollTo }) {
@@ -33,15 +34,19 @@ export function Header({ active, setActive, scrollTo }) {
                 </li>
             </ul>
 
-            <div className={`hamburger ${isMenuOpen ? "active" : ""}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                <span />
-                <span />
-                <span />
-            </div>
+            <div className="header-actions">
+                <ThemeToggle />
 
-            <button className="hire-cta header-hire-btn" onClick={() => scrollTo("contact")}>
-                Hire Me
-            </button>
+                <button className="hire-cta header-hire-btn" onClick={() => scrollTo("contact")}>
+                    Hire Me
+                </button>
+
+                <div className={`hamburger ${isMenuOpen ? "active" : ""}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    <span />
+                    <span />
+                    <span />
+                </div>
+            </div>
         </nav>
     );
 }

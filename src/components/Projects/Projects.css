@@ -1,6 +1,6 @@
 .projects-section {
     padding: 110px 64px;
-    background: #0d0d12;
+    background: var(--bg-color-alt);
 }
 
 .projects-tag {
@@ -29,7 +29,7 @@
 .project-card {
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.07);
+    border: 1px solid var(--border-color);
     transition: transform 0.35s, box-shadow 0.35s;
     cursor: pointer;
 }
@@ -53,7 +53,7 @@
 .project-desc {
     font-size: 0.82rem;
     line-height: 1.75;
-    color: rgba(232, 230, 223, 0.5);
+    color: var(--text-muted);
     margin-bottom: 20px;
 }
 
@@ -67,9 +67,9 @@
     font-size: 0.65rem;
     letter-spacing: 0.1em;
     padding: 5px 12px;
-    background: rgba(255,255,255,0.07);
+    background: var(--border-color);
     border-radius: 100px;
-    color: rgba(232, 230, 223, 0.6);
+    color: var(--text-muted);
     text-transform: uppercase;
 }
 

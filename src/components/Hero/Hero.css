@@ -34,7 +34,7 @@
     font-weight: 700;
     line-height: 1.05;
     margin: 0;
-    background: linear-gradient(135deg, #e8e6df 30%, var(--accent-color));
+    background: linear-gradient(135deg, var(--text-color) 30%, var(--accent-color));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -49,7 +49,7 @@
 
 .type-label {
     font-size: 1.1rem;
-    color: rgba(232, 230, 223, 0.55);
+    color: var(--text-muted);
 }
 
 .type-text {
@@ -68,7 +68,7 @@
 .hero-desc {
     font-size: 0.92rem;
     line-height: 1.85;
-    color: rgba(232, 230, 223, 0.5);
+    color: var(--text-muted);
     max-width: 460px;
     margin: 0;
 }
@@ -103,7 +103,7 @@
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     cursor: pointer;
-    border: 1px solid rgba(232, 230, 223, 0.15);
+    border: 1px solid var(--border-color);
     transition: all 0.25s;
     font-family: inherit;
 }
@@ -112,7 +112,7 @@
     display: flex;
     gap: 40px;
     padding-top: 32px;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 1px solid var(--border-color);
     margin-top: 8px;
 }
 
@@ -128,7 +128,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(232, 230, 223, 0.4);
+    color: var(--text-subtle);
     margin-top: 4px;
 }
 
@@ -154,7 +154,7 @@
 .float-card {
     position: absolute;
     z-index: 3;
-    background: rgba(15, 15, 20, 0.95);
+    background: var(--float-bg);
     border: 1px solid rgba(127, 255, 178, 0.15);
     border-radius: 12px;
     padding: 12px 16px;
@@ -175,7 +175,7 @@
 .float-label {
     font-size: 0.62rem;
     letter-spacing: 0.1em;
-    color: rgba(232, 230, 223, 0.4);
+    color: var(--text-subtle);
     text-transform: uppercase;
 }
 

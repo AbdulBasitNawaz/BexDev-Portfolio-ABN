@@ -27,8 +27,8 @@
 }
 
 .skill-card {
-    background: #0f1117;
-    border: 1px solid rgba(255,255,255,0.06);
+    background: var(--bg-color-card);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 28px 24px;
     transition: border-color 0.3s;
@@ -45,8 +45,8 @@
 .skill-item {
     font-size: 0.82rem;
     padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    color: rgba(232, 230, 223, 0.7);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
     display: flex;
     align-items: center;
     gap: 8px;

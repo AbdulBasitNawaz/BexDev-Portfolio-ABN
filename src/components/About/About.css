@@ -1,6 +1,6 @@
 .about-section {
     padding: 110px 64px;
-    background: #0d0d12;
+    background: var(--bg-color-alt);
 }
 
 .about-tag {
@@ -30,7 +30,7 @@
 .about-text {
     font-size: 0.9rem;
     line-height: 1.95;
-    color: rgba(232, 230, 223, 0.55);
+    color: var(--text-muted);
     margin: 0 0 20px;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .code-block {
-    background: #0f1117;
+    background: var(--bg-color-card);
     border: 1px solid rgba(127, 255, 178, 0.1);
     border-radius: 12px;
     padding: 28px 32px;

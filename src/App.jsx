@@ -7,9 +7,12 @@ import { Projects } from './components/Projects/Projects'
 import { Contact } from './components/Contact/Contact'
 import { Footer } from './components/Footer/Footer'
 import { CustomCursor } from './components/Common/CustomCursor'
+import { Preloader } from './components/Common/Preloader'
+import { ScrollToTop } from './components/Common/ScrollToTop'
 import './App.css'
 
 function App() {
+    const [isLoading, setIsLoading] = useState(true);
     const [active, setActive] = useState("About");
 
     const scrollTo = (id) => {
@@ -18,7 +21,9 @@ function App() {
 
     return (
         <div className="root-layout">
+            {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
             <CustomCursor />
+            <ScrollToTop />
             <Header active={active} setActive={setActive} scrollTo={scrollTo} />
             <Hero scrollTo={scrollTo} />
             <About />
