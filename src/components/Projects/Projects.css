@@ -31,7 +31,6 @@
     overflow: hidden;
     border: 1px solid var(--border-color);
     transition: transform 0.35s, box-shadow 0.35s;
-    cursor: pointer;
 }
 
 .project-body {
@@ -77,7 +76,6 @@
     margin-top: 20px;
     font-size: 0.78rem;
     color: var(--accent-color);
-    cursor: pointer;
 }
 
 /* Responsiveness */

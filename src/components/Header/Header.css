@@ -19,7 +19,6 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     color: var(--accent-color);
-    cursor: pointer;
 }
 
 .nav-links {
@@ -34,7 +33,6 @@
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    cursor: pointer;
     color: var(--text-muted);
     transition: color 0.25s;
     text-decoration: none;
@@ -48,7 +46,6 @@
     display: none;
     flex-direction: column;
     gap: 6px;
-    cursor: pointer;
     padding: 4px;
 }
 
@@ -88,7 +85,6 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    cursor: pointer;
     font-family: inherit;
     transition: all 0.3s ease;
 }

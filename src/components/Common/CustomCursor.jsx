@@ -1,86 +1,87 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./CustomCursor.css";
+import cursorNormal from '../../assets/cursor-normal.png';
+import cursorHover from '../../assets/cursor-hover.png';
 
 export function CustomCursor() {
-    const dotRef = useRef(null);
-    const ringRef = useRef(null);
-    const mousePos = useRef({ x: 0, y: 0 });
-    const ringPos = useRef({ x: 0, y: 0 });
+    const cursorRef = useRef(null);
+    const mousePos = useRef({ x: -100, y: -100 });
     
     const [isHovering, setIsHovering] = useState(false);
+    const [isClicking, setIsClicking] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    const [theme, setTheme] = useState('dark');
 
+    // Handle theme detection for the cursor
+    useEffect(() => {
+        const checkTheme = () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            setTheme(currentTheme);
+        };
+        
+        checkTheme();
+        const observer = new MutationObserver(checkTheme);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+        
+        return () => observer.disconnect();
+    }, []);
+
+    // Mouse events
     useEffect(() => {
         const onMouseMove = (e) => {
             mousePos.current = { x: e.clientX, y: e.clientY };
             if (!isVisible) setIsVisible(true);
             
-            // Immediate update for dot for zero latency via CSS Variables
-            if (dotRef.current) {
-                dotRef.current.style.setProperty("--x", `${e.clientX}px`);
-                dotRef.current.style.setProperty("--y", `${e.clientY}px`);
+            if (cursorRef.current) {
+                // Apply a small manual offset (-6px, -4px) so the tip matches the literal mouse pointer exactly
+                cursorRef.current.style.transform = `translate3d(${e.clientX - 6}px, ${e.clientY - 4}px, 0)`;
             }
         };
 
         const onMouseOver = (e) => {
             const target = e.target;
             if (!target) return;
-            
-            const isClickable = 
-                target.tagName === 'BUTTON' || 
-                target.tagName === 'A' || 
-                target.closest('.proj-card') || 
-                target.closest('.nav-link') ||
-                target.closest('.hire-cta') ||
-                window.getComputedStyle(target).cursor === 'pointer';
-            
+            // Define all selectors that should trigger the "hover" cursor state
+            const hoverSelectors = 'button, a, .proj-card, .nav-link, .hire-cta, input, textarea, select, [role="button"]';
+            const isClickable = target.closest(hoverSelectors);
             setIsHovering(!!isClickable);
         };
 
+        const onMouseDown = () => setIsClicking(true);
+        const onMouseUp = () => setIsClicking(false);
         const onMouseLeave = () => setIsVisible(false);
         const onMouseEnter = () => setIsVisible(true);
 
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("mouseover", onMouseOver);
+        window.addEventListener("mousedown", onMouseDown);
+        window.addEventListener("mouseup", onMouseUp);
         document.addEventListener("mouseleave", onMouseLeave);
         document.addEventListener("mouseenter", onMouseEnter);
-
-        // Animation loop for the following ring
-        let rafId;
-        const animate = () => {
-            // Smoothly move ring towards mouse (lerp)
-            const lerp = 0.15;
-            ringPos.current.x += (mousePos.current.x - ringPos.current.x) * lerp;
-            ringPos.current.y += (mousePos.current.y - ringPos.current.y) * lerp;
-
-            if (ringRef.current) {
-                ringRef.current.style.setProperty("--x", `${ringPos.current.x}px`);
-                ringRef.current.style.setProperty("--y", `${ringPos.current.y}px`);
-            }
-            
-            rafId = requestAnimationFrame(animate);
-        };
-        animate();
 
         return () => {
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("mouseover", onMouseOver);
+            window.removeEventListener("mousedown", onMouseDown);
+            window.removeEventListener("mouseup", onMouseUp);
             document.removeEventListener("mouseleave", onMouseLeave);
             document.removeEventListener("mouseenter", onMouseEnter);
-            cancelAnimationFrame(rafId);
         };
     }, [isVisible]);
 
     return (
-        <div style={{ opacity: isVisible ? 1 : 0, transition: 'opacity 0.3s ease', pointerEvents: 'none' }}>
-            <div 
-                ref={dotRef}
-                className={`cursor-dot ${isHovering ? "hover" : ""}`}
-            />
-            <div 
-                ref={ringRef}
-                className={`cursor-ring ${isHovering ? "hover" : ""}`}
+        <div 
+            ref={cursorRef} 
+            className={`custom-cursor-wrapper theme-${theme}`}
+            style={{ opacity: isVisible ? 1 : 0 }}
+        >
+            <img 
+                src={isHovering ? cursorHover : cursorNormal}
+                alt="cursor"
+                className={`cursor-icon ${isHovering ? 'hovering' : ''} ${isClicking ? 'clicking' : ''}`}
             />
         </div>
     );
 }
+
+export default CustomCursor;

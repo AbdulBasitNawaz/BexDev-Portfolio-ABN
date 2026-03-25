@@ -46,21 +46,16 @@
   padding: 0;
 }
 
+/* Force hide default cursor globally on all elements */
+* {
+  cursor: none !important;
+}
+
 body {
   font-family: 'DM Mono', 'Fira Code', 'Courier New', monospace;
   background-color: var(--bg-color);
   color: var(--text-color);
   overflow-x: hidden;
-  cursor: none;
-}
-
-html {
-  cursor: none;
-}
-
-/* Fallback for when custom cursor might fail or on specific elements */
-a, button, [role="button"], .proj-card, .nav-link, .hire-cta {
-  cursor: none;
 }
 
 ::-webkit-scrollbar {
@@ -87,7 +82,6 @@ h1, h2, h3 {
 
 button {
   font-family: inherit;
-  cursor: pointer;
   transition: all 0.25s;
 }
 

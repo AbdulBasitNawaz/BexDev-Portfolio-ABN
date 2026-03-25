@@ -88,7 +88,6 @@
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     font-weight: 700;
-    cursor: pointer;
     border: none;
     text-transform: uppercase;
     transition: all 0.25s;
@@ -102,7 +101,6 @@
     border-radius: 4px;
     font-size: 0.8rem;
     letter-spacing: 0.1em;
-    cursor: pointer;
     border: 1px solid var(--border-color);
     transition: all 0.25s;
     font-family: inherit;

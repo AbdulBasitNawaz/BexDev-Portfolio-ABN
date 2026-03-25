@@ -7,6 +7,7 @@ import { Projects } from './components/Projects/Projects'
 import { Contact } from './components/Contact/Contact'
 import { Footer } from './components/Footer/Footer'
 import { CustomCursor } from './components/Common/CustomCursor'
+import ParticleWaves from './components/ParticleWaves/ParticleWaves'
 import { Preloader } from './components/Common/Preloader'
 import { ScrollToTop } from './components/Common/ScrollToTop'
 import './App.css'
@@ -22,6 +23,7 @@ function App() {
     return (
         <div className="root-layout">
             {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+            <ParticleWaves />
             <CustomCursor />
             <ScrollToTop />
             <Header active={active} setActive={setActive} scrollTo={scrollTo} />
