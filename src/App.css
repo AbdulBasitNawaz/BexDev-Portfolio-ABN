@@ -18,6 +18,13 @@
   --accent-border: rgba(127, 255, 178, 0.2);
   
   --border-color: rgba(255, 255, 255, 0.06);
+
+  /* Code Syntax - Dark */
+  --code-comment: #6e7a8a;
+  --code-keyword: #7fffb2;
+  --code-key: #e8e6df;
+  --code-string: #ff9966;
+  --code-literal: #7fffb2;
 }
 
 [data-theme='light'] {
@@ -38,6 +45,13 @@
   --accent-border: rgba(0, 171, 85, 0.3);
   
   --border-color: rgba(0, 0, 0, 0.08);
+
+  /* Code Syntax - Light */
+  --code-comment: #767676;
+  --code-keyword: #00ab55;
+  --code-key: #1a1a24;
+  --code-string: #c65a09;
+  --code-literal: #005cc5;
 }
 
 * {

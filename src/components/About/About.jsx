@@ -54,15 +54,29 @@ export function About() {
                 </FadeIn>
                 <div className="code-block-anim">
                     <div className="code-block">
-                        <p className="code-line" style={{ color: "#6e7a8a" }}>// alex_carter.config.js</p>
-                        <p className="code-line" style={{ color: "#7fffb2" }}>const developer = {"{"}</p>
-                        <p className="code-line" style={{ color: "#e8e6df" }}>  &nbsp;name: <span style={{ color: "#ff9966" }}>"Alex Carter"</span>,</p>
-                        <p className="code-line" style={{ color: "#e8e6df" }}>  &nbsp;role: <span style={{ color: "#ff9966" }}>"Full Stack Dev"</span>,</p>
-                        <p className="code-line" style={{ color: "#e8e6df" }}>  &nbsp;location: <span style={{ color: "#ff9966" }}>"San Francisco, CA"</span>,</p>
-                        <p className="code-line" style={{ color: "#e8e6df" }}>  &nbsp;available: <span style={{ color: "#7fffb2" }}>true</span>,</p>
-                        <p className="code-line" style={{ color: "#e8e6df" }}>  &nbsp;coffee: <span style={{ color: "#7fffb2" }}>Infinity</span>,</p>
-                        <p className="code-line" style={{ color: "#e8e6df" }}>  &nbsp;passion: <span style={{ color: "#ff9966" }}>"clean code"</span>,</p>
-                        <p className="code-line" style={{ color: "#7fffb2" }}>{"}"}<span style={{ color: "#e8e6df" }}>;</span></p>
+                        <p className="code-line syntax-comment">// alex_carter.config.js</p>
+                        <p className="code-line syntax-keyword">const developer = {"{"}</p>
+                        <p className="code-line">
+                            &nbsp;<span className="syntax-key">name:</span> <span className="syntax-string">"Alex Carter"</span>,
+                        </p>
+                        <p className="code-line">
+                            &nbsp;<span className="syntax-key">role:</span> <span className="syntax-string">"Full Stack Dev"</span>,
+                        </p>
+                        <p className="code-line">
+                            &nbsp;<span className="syntax-key">location:</span> <span className="syntax-string">"San Francisco, CA"</span>,
+                        </p>
+                        <p className="code-line">
+                            &nbsp;<span className="syntax-key">available:</span> <span className="syntax-literal">true</span>,
+                        </p>
+                        <p className="code-line">
+                            &nbsp;<span className="syntax-key">coffee:</span> <span className="syntax-literal">Infinity</span>,
+                        </p>
+                        <p className="code-line">
+                            &nbsp;<span className="syntax-key">passion:</span> <span className="syntax-string">"clean code"</span>,
+                        </p>
+                        <p className="code-line">
+                            <span className="syntax-keyword">{"}"}</span><span className="syntax-key">;</span>
+                        </p>
                     </div>
                 </div>
             </div>

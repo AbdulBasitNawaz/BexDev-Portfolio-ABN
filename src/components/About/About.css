@@ -40,18 +40,25 @@
 
 .code-block {
     background: var(--bg-color-card);
-    border: 1px solid rgba(127, 255, 178, 0.1);
+    border: 1px solid var(--accent-border);
     border-radius: 12px;
     padding: 28px 32px;
     font-family: inherit;
     font-size: 0.8rem;
     line-height: 1.9;
+    color: var(--code-key);
 }
 
 .code-line {
     margin: 0;
     will-change: clip-path;
 }
+
+.syntax-comment { color: var(--code-comment); }
+.syntax-keyword { color: var(--code-keyword); }
+.syntax-key { color: var(--code-key); }
+.syntax-string { color: var(--code-string); }
+.syntax-literal { color: var(--code-literal); }
 
 /* Responsiveness */
 @media (max-width: 1024px) {
