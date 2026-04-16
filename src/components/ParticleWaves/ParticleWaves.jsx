@@ -4,6 +4,20 @@ import * as THREE from 'three';
 
 const ParticleField = () => {
   const pointsRef = useRef();
+  const [theme, setTheme] = React.useState(document.documentElement.getAttribute('data-theme') || 'dark');
+
+  React.useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          setTheme(document.documentElement.getAttribute('data-theme'));
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+    return () => observer.disconnect();
+  }, []);
   
   // Create a grid of particles - Reduced density for better readability
   const width = 60;
@@ -63,11 +77,11 @@ const ParticleField = () => {
       </bufferGeometry>
       <pointsMaterial 
         size={0.06}
-        color="#7fffb2"
+        color={theme === 'light' ? "#155c32" : "#7fffb2"}
         transparent
-        opacity={0.4}
+        opacity={theme === 'light' ? 0.15 : 0.4}
         sizeAttenuation={true}
-        blending={THREE.AdditiveBlending}
+        blending={theme === 'light' ? THREE.NormalBlending : THREE.AdditiveBlending}
       />
     </points>
   );
