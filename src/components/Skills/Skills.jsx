@@ -21,6 +21,7 @@ export function Skills() {
                 },
                 {
                     scrollTrigger: {
+                        id: "skills-trigger",
                         trigger: sectionRef.current,
                         pin: true,
                         scrub: 1,
@@ -40,7 +41,7 @@ export function Skills() {
     }, []);
 
     return (
-        <section id="skills" className="skills-section" ref={sectionRef}>
+        <section id="skills" className="skills-section" ref={sectionRef} style={{ position: 'relative' }}>
             <FadeIn>
                 <div className="skills-tag">// tech_stack</div>
                 <h2 className="skills-title">Tools &amp; Technologies</h2>

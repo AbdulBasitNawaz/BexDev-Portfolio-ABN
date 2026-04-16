@@ -1,6 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import developerImg from "../../assets/developer.png";
 import "./Hero.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Hero({ scrollTo }) {
     const [typed, setTyped] = useState("");
@@ -8,6 +12,12 @@ export function Hero({ scrollTo }) {
     const roleIdx = useRef(0);
     const charIdx = useRef(0);
     const deleting = useRef(false);
+
+    const sectionRef = useRef(null);
+    const leftWrapperRef = useRef(null);
+    const rightWrapperRef = useRef(null);
+    const leftCardRef = useRef(null);
+    const rightCardRef = useRef(null);
 
     useEffect(() => {
         const tick = () => {
@@ -33,8 +43,59 @@ export function Hero({ scrollTo }) {
         return () => clearTimeout(timer);
     }, []);
 
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            // Initial floating animation on WRAPPERS
+            gsap.to(leftWrapperRef.current, {
+                y: "-=15",
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            gsap.to(rightWrapperRef.current, {
+                y: "+=15",
+                duration: 2.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: 0.5
+            });
+
+            // Scroll animation on INNER CARDS
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1.5,
+                }
+            });
+
+            tl.to(leftCardRef.current, {
+                x: 180,
+                y: 220,
+                opacity: 0,
+                scale: 0.5,
+                rotation: 20,
+                ease: "power1.inOut"
+            }, 0);
+
+            tl.to(rightCardRef.current, {
+                x: -180,
+                y: -220,
+                opacity: 0,
+                scale: 0.5,
+                rotation: -20,
+                ease: "power1.inOut"
+            }, 0);
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section id="hero" className="hero">
+        <section id="hero" className="hero" ref={sectionRef}>
             <div className="hero-left">
                 <div className="fade-up delay-1">
                     <span className="badge">🟢 Available for new projects</span>
@@ -65,16 +126,26 @@ export function Hero({ scrollTo }) {
             </div>
 
             <div className="hero-right">
-                <div className="float-card left" style={{ animation: "float 4s ease-in-out infinite" }}>
-                    <div className="float-label">Current Stack</div>
-                    <div className="float-val">React · Node · TS</div>
+                <div 
+                    ref={leftWrapperRef}
+                    className="float-wrapper left" 
+                >
+                    <div ref={leftCardRef} className="float-card">
+                        <div className="float-label">Current Stack</div>
+                        <div className="float-val">React · Node · TS</div>
+                    </div>
                 </div>
 
                 <img src={developerImg} alt="Abdul Basit" className="hero-img" />
 
-                <div className="float-card right" style={{ animation: "float 4s ease-in-out 1.5s infinite" }}>
-                    <div className="float-label">Open Source</div>
-                    <div className="float-val">⭐ 12k+ Stars</div>
+                <div 
+                    ref={rightWrapperRef}
+                    className="float-wrapper right" 
+                >
+                    <div ref={rightCardRef} className="float-card">
+                        <div className="float-label">Open Source</div>
+                        <div className="float-val">⭐ 12k+ Stars</div>
+                    </div>
                 </div>
             </div>
         </section>
