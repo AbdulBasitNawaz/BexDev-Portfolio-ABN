@@ -14,7 +14,7 @@ export function Header({ active, setActive, scrollTo }) {
 
     return (
         <nav className="nav">
-            <div className="logo" onClick={() => scrollTo("hero")}>{"<BexDev />"}</div>
+            <div className="logo" onClick={() => { scrollTo("hero"); setActive(""); }}>{"<BexDev />"}</div>
             
             <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
                 {NAV_LINKS.map(n => (
@@ -37,7 +37,7 @@ export function Header({ active, setActive, scrollTo }) {
             <div className="header-actions">
                 <ThemeToggle />
 
-                <button className="hire-cta header-hire-btn" onClick={() => scrollTo("contact")}>
+                <button className="hire-cta header-hire-btn" onClick={() => handleNavClick("contact")}>
                     Hire Me
                 </button>
 

@@ -44,8 +44,15 @@ export function Hero({ scrollTo }) {
     }, []);
 
     useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            // Initial floating animation on WRAPPERS
+        const mm = gsap.matchMedia();
+
+        mm.add({
+            isDesktop: "(min-width: 1025px)",
+            isMobile: "(max-width: 1024px)",
+        }, (context) => {
+            const { isDesktop } = context.conditions;
+
+            // Initial floating animation on WRAPPERS (Shared)
             gsap.to(leftWrapperRef.current, {
                 y: "-=15",
                 duration: 2,
@@ -62,19 +69,19 @@ export function Hero({ scrollTo }) {
                 delay: 0.5
             });
 
-            // Scroll animation on INNER CARDS
+            // Scroll animation on INNER CARDS (Responsive)
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top top",
-                    end: "bottom top",
+                    trigger: isDesktop ? sectionRef.current : ".hero-right",
+                    start: isDesktop ? "top top" : "top 45%",
+                    end: isDesktop ? "bottom top" : "bottom 30%",
                     scrub: 1.5,
                 }
             });
 
             tl.to(leftCardRef.current, {
-                x: 180,
-                y: 220,
+                x: isDesktop ? 180 : 80,
+                y: isDesktop ? 220 : 100,
                 opacity: 0,
                 scale: 0.5,
                 rotation: 20,
@@ -82,8 +89,8 @@ export function Hero({ scrollTo }) {
             }, 0);
 
             tl.to(rightCardRef.current, {
-                x: -180,
-                y: -220,
+                x: isDesktop ? -180 : -80,
+                y: isDesktop ? -220 : -100,
                 opacity: 0,
                 scale: 0.5,
                 rotation: -20,
@@ -91,7 +98,7 @@ export function Hero({ scrollTo }) {
             }, 0);
         }, sectionRef);
 
-        return () => ctx.revert();
+        return () => mm.revert();
     }, []);
 
     return (

@@ -36,9 +36,10 @@ function App() {
         
         const target = document.getElementById(id.toLowerCase());
         if (target) {
+            const isMobile = window.innerWidth <= 1024;
             gsap.to(window, { 
                 duration: 1.2, 
-                scrollTo: { y: target, offsetY: 80 }, 
+                scrollTo: { y: target, offsetY: isMobile ? 80 : 20 }, 
                 ease: "power2.inOut" 
             });
         }

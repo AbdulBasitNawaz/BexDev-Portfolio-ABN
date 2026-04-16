@@ -285,14 +285,16 @@
         margin-top: 40px;
     }
 
-    .float-card.left {
-        left: 0;
-        top: 15%;
+    .float-wrapper.left {
+        left: 2%;
+        top: 10%;
+        z-index: 10;
     }
 
-    .float-card.right {
-        right: 0;
-        bottom: 15%;
+    .float-wrapper.right {
+        right: 5%;
+        bottom: 20%;
+        z-index: 10;
     }
 }
 
