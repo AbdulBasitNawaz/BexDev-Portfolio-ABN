@@ -43,7 +43,7 @@ export function About() {
             <div className="about-grid">
                 <FadeIn delay={0.1}>
                     <p className="about-text">
-                        Hey, I'm Abdul Basit Nawaz — a full-stack developer with 6+ years turning complex problems into elegant, performant software. I care deeply about code quality, developer experience, and products that genuinely delight users.
+                        Hey, I'm Abdul Basit Nawaz — a full-stack developer with 2+ years turning complex problems into elegant, performant software. I care deeply about code quality, developer experience, and products that genuinely delight users.
                     </p>
                     <p className="about-text">
                         My work spans frontend architecture, API design, and DevOps automation. I'm passionate about open source and have contributed to several major projects in the React and Node.js ecosystems.
@@ -57,13 +57,13 @@ export function About() {
                         <p className="code-line syntax-comment">// alex_carter.config.js</p>
                         <p className="code-line syntax-keyword">const developer = {"{"}</p>
                         <p className="code-line">
-                            &nbsp;<span className="syntax-key">name:</span> <span className="syntax-string">"Alex Carter"</span>,
+                            &nbsp;<span className="syntax-key">name:</span> <span className="syntax-string">"Abdul Basit Nawaz"</span>,
                         </p>
                         <p className="code-line">
                             &nbsp;<span className="syntax-key">role:</span> <span className="syntax-string">"Full Stack Dev"</span>,
                         </p>
                         <p className="code-line">
-                            &nbsp;<span className="syntax-key">location:</span> <span className="syntax-string">"San Francisco, CA"</span>,
+                            &nbsp;<span className="syntax-key">location:</span> <span className="syntax-string">"San Diego, CA"</span>,
                         </p>
                         <p className="code-line">
                             &nbsp;<span className="syntax-key">available:</span> <span className="syntax-literal">true</span>,

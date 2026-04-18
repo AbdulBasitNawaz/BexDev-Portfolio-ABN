@@ -2,35 +2,68 @@ export const PHOTO_B64 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gH
 
 export const NAV_LINKS = ["About", "Skills", "Projects", "Contact"];
 
-export const PROJECTS = [
+export const LIVE_PROJECTS = [
     {
-        title: "CloudSync API",
+        title: "DevOps",
         desc: "Distributed file sync system handling 10M+ requests/day with real-time conflict resolution.",
         tags: ["Node.js", "Redis", "WebSockets"],
+        category: "Backend",
         color: "#0f4c35",
-        icon: "☁️",
+        image: "project1.avif",
+        status: "Shipped",
+        date: "Jan 2024 - Mar 2025"
     },
     {
-        title: "DevFlow CLI",
+        title: "Website Development",
         desc: "Terminal toolkit for automating CI/CD pipelines — 3k+ GitHub stars, used by Fortune 500 teams.",
         tags: ["Rust", "Docker", "GitHub Actions"],
+        category: "CLI Tool",
         color: "#1a1a3e",
-        icon: "⚡",
+        image: "project2.png",
+        status: "Shipped",
+        date: "Nov 2022 - Dec 2023"
     },
     {
-        title: "NeuroUI",
+        title: "ML/AI Automation",
         desc: "Open-source React component library with built-in AI-powered accessibility audit & dark mode.",
         tags: ["React", "TypeScript", "Storybook"],
+        category: "Frontend",
         color: "#3d1a1a",
-        icon: "🧩",
+        image: "project3.webp",
+        status: "Shipped",
+        date: "May 2023 - Present"
     },
     {
-        title: "Sentinel",
+        title: "Cyber Security",
         desc: "Real-time security monitoring dashboard: log aggregation, anomaly detection, alerting.",
         tags: ["Python", "Kafka", "Grafana"],
+        category: "Security",
         color: "#1a2e3d",
-        icon: "🛡️",
+        image: "project4.png",
+        status: "RIP",
+        date: "Feb 2020 - Apr 2021"
     },
+];
+
+export const FUTURE_PROJECTS = [
+    {
+        title: "Munch Club",
+        desc: "A food discovery social network for foodies to find hidden gems in their city.",
+        tags: ["Next.js", "Supabase", "Figma"],
+        category: "App",
+        image: null,
+        status: "WIP",
+        date: "One day"
+    },
+    {
+        title: "The Cafe",
+        desc: "Interactive menu system for modern cafes with local real-time inventory tracking.",
+        tags: ["React Native", "Firebase"],
+        category: "Website",
+        image: null,
+        status: "One day",
+        date: "Coming Soon"
+    }
 ];
 
 export const SKILLS = [
