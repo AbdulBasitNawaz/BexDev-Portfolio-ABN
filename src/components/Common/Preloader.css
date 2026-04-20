@@ -15,7 +15,7 @@
 .preloader-text {
     opacity: 0;
     transform: translateY(30px);
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: 'Nanum Gothic', sans-serif;
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     letter-spacing: 0.05em;

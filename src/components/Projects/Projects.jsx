@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FadeIn } from "../Common/FadeIn";
 import { LIVE_PROJECTS, FUTURE_PROJECTS } from "../../constants";
+import SectionHeader from "../Common/SectionHeader";
 import "./Projects.css";
 
 // Import project images
@@ -26,8 +27,7 @@ export function Projects() {
             <FadeIn>
                 <div className="projects-header">
                     <div className="header-left">
-                        <div className="projects-tag">// portfolio_archives</div>
-                        <h2 className="projects-title">Selected Projects</h2>
+                        <SectionHeader tag="portfolio_archives" title="Selected Projects" />
                     </div>
                     
                     <div className="tab-switcher">

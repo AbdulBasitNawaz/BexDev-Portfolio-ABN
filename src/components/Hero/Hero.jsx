@@ -104,11 +104,8 @@ export function Hero({ scrollTo }) {
     return (
         <section id="hero" className="hero" ref={sectionRef}>
             <div className="hero-left">
-                <div className="fade-up delay-1">
-                    <span className="badge">🟢 Available for new projects</span>
-                </div>
-                <h1 className="hero-name fade-up delay-2">
-                    Abdul Basit
+                <h1 className="hero-name fade-up delay-1">
+                    Abdul Basit Nawaz
                 </h1>
                 <div className="type-row fade-up delay-3">
                     <span className="type-label">I'm a </span>

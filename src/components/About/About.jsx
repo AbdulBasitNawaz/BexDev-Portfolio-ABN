@@ -2,6 +2,7 @@ import React, { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { FadeIn } from "../Common/FadeIn";
+import SectionHeader from "../Common/SectionHeader";
 import "./About.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -37,8 +38,7 @@ export function About() {
     return (
         <section id="about" className="about-section" ref={sectionRef}>
             <FadeIn>
-                <div className="about-tag">// about_me</div>
-                <h2 className="about-title">The developer<br />behind the code</h2>
+                <SectionHeader tag="about_me" title="The developer behind the code" />
             </FadeIn>
             <div className="about-grid">
                 <FadeIn delay={0.1}>
@@ -54,7 +54,7 @@ export function About() {
                 </FadeIn>
                 <div className="code-block-anim">
                     <div className="code-block">
-                        <p className="code-line syntax-comment">// alex_carter.config.js</p>
+                        <p className="code-line syntax-comment">// abdul_basit.config.js</p>
                         <p className="code-line syntax-keyword">const developer = {"{"}</p>
                         <p className="code-line">
                             &nbsp;<span className="syntax-key">name:</span> <span className="syntax-string">"Abdul Basit Nawaz"</span>,

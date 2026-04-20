@@ -3,6 +3,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { FadeIn } from "../Common/FadeIn";
 import { SKILLS } from "../../constants";
+import SectionHeader from "../Common/SectionHeader";
 import "./Skills.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -43,8 +44,7 @@ export function Skills() {
     return (
         <section id="skills" className="skills-section" ref={sectionRef} style={{ position: 'relative' }}>
             <FadeIn>
-                <div className="skills-tag">// tech_stack</div>
-                <h2 className="skills-title">Tools &amp; Technologies</h2>
+                <SectionHeader tag="tech_stack" title="Tools & Technologies" />
             </FadeIn>
             <div className="skills-grid">
                 {SKILLS.map((s, i) => (

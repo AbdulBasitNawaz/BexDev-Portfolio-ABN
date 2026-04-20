@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import { db } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { FadeIn } from "../Common/FadeIn";
+import SectionHeader from "../Common/SectionHeader";
 import "./Contact.css";
 
 // Initialize EmailJS with global settings and built-in rate limit
@@ -88,8 +89,7 @@ export function Contact() {
         <section id="contact" className="contact-section">
             <div className="contact-inner">
                 <FadeIn>
-                    <div className="contact-tag">// let's_talk</div>
-                    <h2 className="contact-title">Have a project in mind?</h2>
+                    <SectionHeader tag="let's_talk" title="Have a project in mind?" align="center" />
                     <p className="contact-sub">
                         I'm always open to discussing new opportunities, collaborations, or just a good conversation about tech.
                     </p>

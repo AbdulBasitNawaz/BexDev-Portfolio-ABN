@@ -3,21 +3,6 @@
     background: var(--bg-color-alt);
 }
 
-.about-tag {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent-color);
-    margin-bottom: 16px;
-}
-
-.about-title {
-    font-family: 'Georgia', serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 0;
-}
 
 .about-grid {
     display: grid;
@@ -28,8 +13,8 @@
 }
 
 .about-text {
-    font-size: 0.9rem;
-    line-height: 1.95;
+    font-size: 1rem;
+    line-height: 1.85;
     color: var(--text-muted);
     margin: 0 0 20px;
 }
@@ -43,7 +28,7 @@
     border: 1px solid var(--accent-border);
     border-radius: 12px;
     padding: 28px 32px;
-    font-family: inherit;
+    font-family: 'DM Mono', 'Fira Code', 'Courier New', monospace;
     font-size: 0.8rem;
     line-height: 1.9;
     color: var(--code-key);
@@ -77,13 +62,6 @@
         gap: 48px;
     }
 
-    .about-title {
-        text-align: center;
-    }
-
-    .about-tag {
-        text-align: center;
-    }
 }
 
 @media (max-width: 480px) {

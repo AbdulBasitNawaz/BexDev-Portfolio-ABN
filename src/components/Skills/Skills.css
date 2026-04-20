@@ -3,21 +3,6 @@
     overflow: hidden;
 }
 
-.skills-tag {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent-color);
-    margin-bottom: 16px;
-}
-
-.skills-title {
-    font-family: 'Georgia', serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 0;
-}
 
 .skills-grid {
     display: grid;
@@ -78,9 +63,6 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .skills-title, .skills-tag {
-        text-align: center;
-    }
 }
 
 @media (max-width: 480px) {

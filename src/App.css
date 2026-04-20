@@ -65,8 +65,12 @@
   cursor: none !important;
 }
 
+/* Universal Font Application (excluding protected zones) */
+html, body, button, input, textarea, select {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
 body {
-  font-family: 'DM Mono', 'Fira Code', 'Courier New', monospace;
   background-color: var(--bg-color);
   color: var(--text-color);
   overflow-x: hidden;
@@ -89,9 +93,10 @@ body {
   min-height: 100vh;
 }
 
-/* Base Styles */
-h1, h2, h3 {
-  font-family: 'Georgia', 'Times New Roman', serif;
+/* Standard Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 700;
 }
 
 button {

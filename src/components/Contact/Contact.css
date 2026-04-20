@@ -2,21 +2,6 @@
     padding: 110px 64px;
 }
 
-.contact-tag {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent-color);
-    margin-bottom: 16px;
-}
-
-.contact-title {
-    font-family: 'Georgia', serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 0;
-}
 
 .contact-inner {
     max-width: 600px;
@@ -25,7 +10,7 @@
 }
 
 .contact-sub {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-subtle);
     line-height: 1.85;
     margin: 20px 0 48px;
@@ -52,7 +37,7 @@
     padding: 14px 18px;
     color: #e8e6df;
     font-family: inherit;
-    font-size: 0.82rem;
+    font-size: 0.9rem;
     outline: none;
     transition: border-color 0.25s;
     box-sizing: border-box;
@@ -78,9 +63,6 @@
         grid-template-columns: 1fr;
     }
 
-    .contact-title, .contact-tag {
-        text-align: center;
-    }
     
     .contact-btn {
         align-self: stretch;
