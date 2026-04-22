@@ -5,53 +5,68 @@ import './LiveCounter.css';
 
 const LiveCounter = () => {
     const [count, setCount] = useState(1);
+    const [isPioneer, setIsPioneer] = useState(true);
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
-        // 1. Create a reference to the presence node
+        // 1. Presence Logic
         const presenceRef = ref(rtdb, 'presence');
-        
-        // 2. Add this user to the presence list
         const newUserRef = push(presenceRef);
-        
-        // 3. Set up the presence logic
-        // When the user connects/joins
-        set(newUserRef, {
-            online: true,
-            last_changed: serverTimestamp()
-        });
-
-        // 4. When the user disconnects (tab closed, etc)
-        // This is handled by Firebase servers automatically
+        set(newUserRef, { online: true, last_changed: serverTimestamp() });
         onDisconnect(newUserRef).remove();
 
-        // 5. Listen for changes in the count
+        // 2. Pioneer Timer
+        const timer = setTimeout(() => setIsPioneer(false), 20000);
+
+        // 3. Count Listener
         const unsubscribe = onValue(presenceRef, (snapshot) => {
             if (snapshot.exists()) {
                 const data = snapshot.val();
-                const onlineUsers = Object.keys(data).length;
-                setCount(onlineUsers);
+                setCount(Object.keys(data).length);
             } else {
                 setCount(1);
             }
         });
 
         return () => {
-            // Cleanup on component unmount
+            clearTimeout(timer);
             unsubscribe();
-            set(newUserRef, null); // Manual cleanup if possible
+            set(newUserRef, null);
         };
     }, []);
 
+    const getDisplayText = () => {
+        if (count > 1) {
+            return (
+                <>
+                    <span className="count-highlight">{count}</span> people viewing the site
+                </>
+            );
+        }
+        if (isPioneer) return "Be the first person to explore this page";
+        return (
+            <>
+                <span className="count-highlight">1</span> person viewing the site
+            </>
+        );
+    };
+
     return (
-        <div className="live-counter">
-            <div className="live-dot-container">
+        <div 
+            className="live-counter-box"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            data-cursor-tooltip={count === 1 && !isPioneer ? "It's You!" : ""}
+        >
+            <div className="live-dot-wrapper">
                 <div className="live-dot"></div>
                 <div className="live-pulse"></div>
             </div>
-            <span className="live-text">
-                <span className="live-count">{count}</span>
-                <span className="live-label">Exploring Now</span>
-            </span>
+            <div className="live-content">
+                <p className="live-status-text">
+                    {getDisplayText()}
+                </p>
+            </div>
         </div>
     );
 };

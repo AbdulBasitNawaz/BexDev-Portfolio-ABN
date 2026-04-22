@@ -1,93 +1,109 @@
-.live-counter {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(127, 255, 178, 0.05);
-    border: 1px solid rgba(127, 255, 178, 0.1);
-    padding: 6px 14px;
-    border-radius: 20px;
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
-}
-
-.live-counter:hover {
-    background: rgba(127, 255, 178, 0.08);
-    border-color: rgba(127, 255, 178, 0.2);
-    transform: translateY(-2px);
-}
-
-.live-dot-container {
-    position: relative;
-    width: 10px;
-    height: 10px;
+.live-counter-box {
+    position: fixed;
+    top: 100px;
+    right: 40px;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px 20px;
+    border-radius: 8px; /* Rectangular with slight rounding for premium feel */
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 15px;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    max-width: 300px;
+}
+
+.live-counter-box:hover {
+    transform: translateY(-5px);
+    background: rgba(15, 15, 15, 0.95);
+    border-color: rgba(127, 255, 178, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(127, 255, 178, 0.05);
+}
+
+.live-dot-wrapper {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
 }
 
 .live-dot {
     width: 8px;
     height: 8px;
-    background: var(--accent-color);
+    background: #7fffb2; /* Mint Accent */
     border-radius: 50%;
     z-index: 2;
-    box-shadow: 0 0 10px rgba(127, 255, 178, 0.4);
+    box-shadow: 0 0 12px rgba(127, 255, 178, 0.6);
 }
 
 .live-pulse {
     position: absolute;
+    top: -6px;
+    left: -6px;
     width: 20px;
     height: 20px;
-    background: var(--accent-color);
+    background: #7fffb2;
     border-radius: 50%;
-    opacity: 0.3;
-    animation: live-pulse-animation 2s infinite;
+    opacity: 0.25;
+    animation: live-indicator-pulse 1s infinite;
     z-index: 1;
 }
 
-@keyframes live-pulse-animation {
+@keyframes live-indicator-pulse {
     0% {
         transform: scale(0.5);
-        opacity: 0.5;
+        opacity: 0.6;
     }
     100% {
-        transform: scale(1.8);
+        transform: scale(2.2);
         opacity: 0;
     }
 }
 
-.live-text {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--text-color);
+.live-status-text {
+    color: rgba(255, 255, 255, 0.9);
     font-family: 'Manrope', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+    letter-spacing: 0.02em;
 }
 
-.live-count {
-    color: var(--accent-color);
+.count-highlight {
+    color: #7fffb2;
     font-weight: 800;
     font-size: 0.95rem;
-    min-width: 1ch;
-    text-align: center;
 }
 
-.live-label {
-    opacity: 0.7;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 0.75rem;
+/* Response for Mobile */
+@media (max-width: 768px) {
+    .live-counter-box {
+        top: 85px; /* Slightly closer to top on mobile */
+        right: 15px; /* Tighter to edge */
+        bottom: auto; /* Clear previous mobile bottom */
+        left: auto;   /* Clear previous mobile left */
+        padding: 8px 14px;
+        max-width: calc(100% - 30px);
+        width: fit-content;
+    }
+    
+    .live-status-text {
+        font-size: 0.72rem;
+    }
+
+    .live-dot-wrapper {
+        width: 6px;
+        height: 6px;
+    }
 }
 
-/* Light mode adjustments */
-[data-theme='light'] .live-counter {
-    background: rgba(0, 171, 85, 0.05);
-    border-color: rgba(0, 171, 85, 0.1);
-}
-
-[data-theme='light'] .live-text {
-    color: var(--text-color);
+/* Adjustments for light mode interaction - keeping it dark/sleek even in light mode */
+[data-theme='light'] .live-counter-box {
+    background: rgba(20, 20, 20, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }

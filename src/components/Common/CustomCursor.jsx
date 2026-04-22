@@ -11,6 +11,7 @@ export function CustomCursor() {
     const [isClicking, setIsClicking] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [theme, setTheme] = useState('dark');
+    const [tooltipText, setTooltipText] = useState("");
 
     // Handle theme detection for the cursor
     useEffect(() => {
@@ -45,6 +46,14 @@ export function CustomCursor() {
             const hoverSelectors = 'button, a, .proj-card, .nav-link, .hire-cta, input, textarea, select, [role="button"]';
             const isClickable = target.closest(hoverSelectors);
             setIsHovering(!!isClickable);
+
+            // Tooltip Check
+            const tooltipSource = target.closest('[data-cursor-tooltip]');
+            if (tooltipSource) {
+                setTooltipText(tooltipSource.dataset.cursorTooltip);
+            } else {
+                setTooltipText("");
+            }
         };
 
         const onMouseDown = () => setIsClicking(true);
@@ -75,6 +84,9 @@ export function CustomCursor() {
             className={`custom-cursor-wrapper theme-${theme}`}
             style={{ opacity: isVisible ? 1 : 0 }}
         >
+            <div className={`cursor-tooltip ${tooltipText ? 'visible' : ''}`}>
+                {tooltipText}
+            </div>
             <img 
                 src={isHovering ? cursorHover : cursorNormal}
                 alt="cursor"

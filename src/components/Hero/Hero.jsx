@@ -6,6 +6,8 @@ import "./Hero.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import LiveCounter from "../Common/LiveCounter";
+
 export function Hero({ scrollTo }) {
     const [typed, setTyped] = useState("");
     const roles = ["Full Stack Developer", "Open Source Enthusiast", "API Architect", "React Specialist"];
@@ -103,6 +105,7 @@ export function Hero({ scrollTo }) {
 
     return (
         <section id="hero" className="hero" ref={sectionRef}>
+            <LiveCounter />
             <div className="hero-left">
                 <h1 className="hero-name fade-up delay-1">
                     Abdul Basit Nawaz

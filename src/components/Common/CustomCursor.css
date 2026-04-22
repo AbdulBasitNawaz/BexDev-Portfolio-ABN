@@ -38,6 +38,36 @@
     transform: scale(0.9);
 }
 
+/* Tooltip styling */
+.cursor-tooltip {
+    position: absolute;
+    top: -35px; /* Position above the cursor */
+    left: 20px; /* Offset to the right */
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(127, 255, 178, 0.2);
+    color: #7fffb2; /* Mint Accent */
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cursor-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Hide on touch devices */
 @media (hover: none) and (pointer: coarse) {
     .custom-cursor-wrapper {
