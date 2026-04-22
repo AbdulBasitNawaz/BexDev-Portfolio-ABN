@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './FloatingCV.css';
 
@@ -7,15 +7,20 @@ export const FloatingCV = () => {
     const arrowRef = useRef(null);
     const contentRef = useRef(null);
     const iconRef = useRef(null);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     useEffect(() => {
-        const hitArea = hitAreaRef.current;
+        const arrow = arrowRef.current;
         
-        // Initial state: hide the body, keep exactly the 62px tip peaking
-        gsap.set(arrowRef.current, { xPercent: 100, x: -62 });
+        // THE "HIDE" LOGIC:
+        // xPercent: 100 -> Moves the element 100% of its width to the right (fully hidden).
+        // x: -40       -> Pulls it back by 40px so only a small portion "peeks" out.
+        // CHANGE THE -40 BELOW TO HIDE IT MORE (e.g. -30) OR LESS (e.g. -60).
+        gsap.set(arrow, { xPercent: 100, x: -50 });
 
         const onMouseEnter = () => {
-            gsap.to(arrowRef.current, {
+            setIsExpanded(true);
+            gsap.to(arrow, {
                 xPercent: 0,
                 x: 0,
                 duration: 0.6,
@@ -34,9 +39,10 @@ export const FloatingCV = () => {
         };
 
         const onMouseLeave = () => {
-            gsap.to(arrowRef.current, {
+            setIsExpanded(false);
+            gsap.to(arrow, {
                 xPercent: 100,
-                x: -62,
+                x: -50, // Retracts to the peek position
                 duration: 0.5,
                 ease: "power3.inOut",
                 overwrite: "auto"
@@ -57,14 +63,38 @@ export const FloatingCV = () => {
             });
         };
 
-        hitArea.addEventListener('mouseenter', onMouseEnter);
-        hitArea.addEventListener('mouseleave', onMouseLeave);
+        arrow.addEventListener('mouseenter', onMouseEnter);
+        arrow.addEventListener('mouseleave', onMouseLeave);
 
         return () => {
-            hitArea.removeEventListener('mouseenter', onMouseEnter);
-            hitArea.removeEventListener('mouseleave', onMouseLeave);
+            arrow.removeEventListener('mouseenter', onMouseEnter);
+            arrow.removeEventListener('mouseleave', onMouseLeave);
         };
     }, []);
+
+    const handleClick = (e) => {
+        // If not expanded, expand it first and prevent download
+        if (!isExpanded) {
+            e.preventDefault();
+            setIsExpanded(true);
+            gsap.to(arrowRef.current, {
+                xPercent: 0,
+                x: 0,
+                duration: 0.6,
+                ease: "power3.out",
+                overwrite: "auto"
+            });
+            gsap.to(iconRef.current, {
+                scale: 1.1,
+                x: -3,
+                duration: 0.4,
+                ease: "back.out(1.7)",
+                overwrite: "auto"
+            });
+            gsap.to(".cv-vertical-text", { opacity: 0, duration: 0.2, overwrite: "auto" });
+        }
+        // If already expanded, let the default download behavior happen
+    };
 
     return (
         <div className="floating-cv-container" ref={hitAreaRef}>
@@ -73,6 +103,7 @@ export const FloatingCV = () => {
                 download="Resume.pdf"
                 className="floating-cv-arrow"
                 ref={arrowRef}
+                onClick={handleClick}
             >
                 <div className="cv-arrow-tip" ref={iconRef}>
                     <span className="cv-vertical-text">RESUME</span>

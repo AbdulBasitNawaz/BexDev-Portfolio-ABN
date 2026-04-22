@@ -1,4 +1,5 @@
 import React from "react";
+import LiveCounter from "../Common/LiveCounter";
 import "./Footer.css";
 
 export function Footer() {
@@ -7,6 +8,9 @@ export function Footer() {
             <div className="footer-logo">
                 {"<BexDev />"} © 2026
             </div>
+            
+            <LiveCounter />
+
             <div className="footer-links">
                 {["GitHub", "LinkedIn", "Twitter", "Dev.to"].map(l => (
                     <a key={l} href={`#${l.toLowerCase()}`} className="footer-link">{l}</a>

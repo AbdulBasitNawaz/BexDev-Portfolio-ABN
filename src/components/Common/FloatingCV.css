@@ -1,7 +1,7 @@
 .floating-cv-container {
     position: fixed;
     right: 0;
-    top: 40%;
+    top: 30%;
     transform: translateY(-50%);
     z-index: 1000;
     /* Hit area dimensions - large enough to cover expanded state */
@@ -10,12 +10,13 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    /* Enable pointer events for the hit area */
-    pointer-events: auto;
+    /* Disable pointer events on the container so it doesn't capture mouse movement 'near' the button */
+    pointer-events: none;
     background: transparent;
 }
 
 .floating-cv-arrow {
+    pointer-events: auto; /* Enable events only on the button itself */
     display: flex;
     align-items: center;
     /* Arrow points LEFT, flat on RIGHT edge */
@@ -91,14 +92,29 @@
 
 @media (max-width: 1024px) {
     .floating-cv-container {
-        top: auto;
-        bottom: 30px;
+        top: 115px;
+        bottom: auto;
+        right: 0;
         transform: none;
-        width: 180px;
+        width: 250px; /* Still wide enough for expansion */
         height: 54px;
     }
     
     .floating-cv-arrow {
-        height: 50px;
+        height: 48px;
+        clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 20px 100%, 0% 50%); /* Revert to arrow shape */
+    }
+
+    .cv-arrow-tip {
+        width: 62px; /* Keep same as desktop for consistent JS peeking */
+        padding-left: 10px;
+    }
+
+    .cv-vertical-text {
+        font-size: 0.5rem;
+    }
+
+    .cv-text {
+        font-size: 0.8rem;
     }
 }
