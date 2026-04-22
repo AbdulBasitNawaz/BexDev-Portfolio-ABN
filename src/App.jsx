@@ -13,6 +13,7 @@ import { ScrollToTop } from './components/Common/ScrollToTop'
 import gsap from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { FloatingCV } from './components/Common/FloatingCV'
 import './App.css'
 
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
@@ -51,6 +52,7 @@ function App() {
             <ParticleWaves />
             <CustomCursor />
             <ScrollToTop />
+            <FloatingCV />
             <Header active={active} setActive={setActive} scrollTo={scrollTo} />
             <Hero scrollTo={scrollTo} />
             <About />
