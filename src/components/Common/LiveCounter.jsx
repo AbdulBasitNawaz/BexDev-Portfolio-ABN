@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { rtdb } from '../../firebase';
 import { ref, onValue, push, onDisconnect, set, serverTimestamp } from 'firebase/database';
 import './LiveCounter.css';
@@ -7,6 +7,8 @@ const LiveCounter = () => {
     const [count, setCount] = useState(1);
     const [isPioneer, setIsPioneer] = useState(true);
     const [isHovered, setIsHovered] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const hideTimerRef = useRef(null);
 
     useEffect(() => {
         // 1. Presence Logic
@@ -30,10 +32,26 @@ const LiveCounter = () => {
 
         return () => {
             clearTimeout(timer);
+            if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
             unsubscribe();
             set(newUserRef, null);
         };
     }, []);
+
+    // 4. Auto-hide logic: Trigger on count change
+    useEffect(() => {
+        setIsVisible(true);
+        
+        if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+        
+        hideTimerRef.current = setTimeout(() => {
+            setIsVisible(false);
+        }, 30000);
+
+        return () => {
+            if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+        };
+    }, [count]);
 
     const getDisplayText = () => {
         if (count > 1) {
@@ -53,7 +71,7 @@ const LiveCounter = () => {
 
     return (
         <div 
-            className="live-counter-box"
+            className={`live-counter-box ${!isVisible ? 'hidden' : ''}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             data-cursor-tooltip={count === 1 && !isPioneer ? "It's You!" : ""}
