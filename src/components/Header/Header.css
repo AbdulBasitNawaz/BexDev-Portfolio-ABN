@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 200;
+    z-index: 1100; /* Higher than LiveCounter and FloatingCV (1000) */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -111,7 +111,7 @@
         justify-content: center;
         gap: 32px;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 199;
+        z-index: 1050; /* Above LiveCounter/FloatingCV */
     }
 
     .nav-links.open {
@@ -120,7 +120,7 @@
 
     .hamburger {
         display: flex;
-        z-index: 201; /* Ensure above menu */
+        z-index: 1200; /* Ensure above menu and everything else */
     }
 
     .nav-links .nav-link {
