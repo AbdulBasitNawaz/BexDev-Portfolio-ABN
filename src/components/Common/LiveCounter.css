@@ -94,7 +94,7 @@
 /* Response for Mobile */
 @media (max-width: 768px) {
     .live-counter-box {
-        top: 85px; /* Slightly closer to top on mobile */
+        top: 75px; /* Slightly closer to top on mobile */
         right: 15px; /* Tighter to edge */
         bottom: auto; /* Clear previous mobile bottom */
         left: auto;   /* Clear previous mobile left */

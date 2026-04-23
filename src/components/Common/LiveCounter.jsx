@@ -20,20 +20,38 @@ const LiveCounter = () => {
         // 2. Pioneer Timer
         const timer = setTimeout(() => setIsPioneer(false), 20000);
 
-        // 3. Count Listener
-        const unsubscribe = onValue(presenceRef, (snapshot) => {
-            if (snapshot.exists()) {
-                const data = snapshot.val();
-                setCount(Object.keys(data).length);
-            } else {
-                setCount(1);
-            }
-        });
+        // 3. Self-Healing Connection Logic
+        let unsubscribe = null;
+        let retryTimeout = null;
+
+        const setupPresenceListener = () => {
+            if (unsubscribe) unsubscribe();
+
+            unsubscribe = onValue(presenceRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    setCount(Object.keys(data).length);
+                } else {
+                    setCount(1);
+                }
+            }, (error) => {
+                // If blocked by quota (100 limit), show 100+ and retry later
+                console.warn("Presence connection refused (limit reached). Retrying in 30s...", error);
+                setCount(100); 
+
+                // Try to reconnect in 30 seconds
+                if (retryTimeout) clearTimeout(retryTimeout);
+                retryTimeout = setTimeout(setupPresenceListener, 30000);
+            });
+        };
+
+        setupPresenceListener();
 
         return () => {
             clearTimeout(timer);
             if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-            unsubscribe();
+            if (retryTimeout) clearTimeout(retryTimeout);
+            if (unsubscribe) unsubscribe();
             set(newUserRef, null);
         };
     }, []);
@@ -54,6 +72,13 @@ const LiveCounter = () => {
     }, [count]);
 
     const getDisplayText = () => {
+        if (count >= 100) {
+            return (
+                <>
+                    <span className="count-highlight">100+</span> people viewing the site
+                </>
+            );
+        }
         if (count > 1) {
             return (
                 <>
