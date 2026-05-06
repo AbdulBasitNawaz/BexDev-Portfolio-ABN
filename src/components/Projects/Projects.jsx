@@ -23,6 +23,7 @@ export function Projects() {
     const trackRef = useRef(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     const projectsToDisplay = activeTab === "deployed" ? LIVE_PROJECTS : FUTURE_PROJECTS;
 
@@ -48,11 +49,16 @@ export function Projects() {
     };
 
     useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener("resize", handleResize);
+        
         // Reset scroll on tab change
         if (trackRef.current) {
             trackRef.current.scrollLeft = 0;
             checkScroll();
         }
+        
+        return () => window.removeEventListener("resize", handleResize);
     }, [activeTab]);
 
     return (
@@ -111,7 +117,7 @@ export function Projects() {
                 <div className="carousel-track">
                     {projectsToDisplay.map((p, i) => (
                         <div className="carousel-item" key={p.title + activeTab}>
-                            <FadeIn delay={i * 0.1}>
+                            <FadeIn delay={i * 0.1} disabled={isMobile}>
                                 <div className="project-card-new">
                                     <div className="card-image-container">
                                         {p.image ? (

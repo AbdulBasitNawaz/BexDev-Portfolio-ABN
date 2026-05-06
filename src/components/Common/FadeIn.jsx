@@ -1,8 +1,13 @@
 import React from "react";
 import { useInView } from "../../hooks/useInView";
 
-export function FadeIn({ children, delay = 0, style = {} }) {
+export function FadeIn({ children, delay = 0, style = {}, disabled = false }) {
     const [ref, visible] = useInView();
+    
+    if (disabled) {
+        return <div style={style}>{children}</div>;
+    }
+
     return (
         <div ref={ref} style={{
             opacity: visible ? 1 : 0,
