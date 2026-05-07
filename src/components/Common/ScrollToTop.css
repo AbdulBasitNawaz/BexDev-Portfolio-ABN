@@ -1,7 +1,7 @@
 .scroll-to-top {
     position: fixed;
     bottom: 40px;
-    right: 40px;
+    right: 110px; /* Shifted left to avoid ChatBot */
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     cursor: none; /* using custom cursor */
-    z-index: 9000;
+    z-index: 900; /* Below ChatBot (1000) */
     opacity: 0;
     pointer-events: none;
     transform: translateY(20px);
@@ -35,7 +35,7 @@
 @media (max-width: 768px) {
     .scroll-to-top {
         bottom: 24px;
-        right: 24px;
+        right: 90px; /* Shifted left on mobile too */
         width: 44px;
         height: 44px;
     }

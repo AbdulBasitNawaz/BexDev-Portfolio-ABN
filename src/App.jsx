@@ -14,6 +14,7 @@ import gsap from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { FloatingCV } from './components/Common/FloatingCV'
+import { ChatBot } from './components/ChatBot/ChatBot'
 import './App.css'
 
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
@@ -53,6 +54,7 @@ function App() {
             <CustomCursor />
             <ScrollToTop />
             <FloatingCV />
+            <ChatBot />
             <Header active={active} setActive={setActive} scrollTo={scrollTo} />
             <Hero scrollTo={scrollTo} />
             <About />
