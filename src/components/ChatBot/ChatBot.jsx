@@ -117,6 +117,7 @@ export const ChatBot = () => {
         }, 600);
     };
 
+
     const resetChat = () => {
         const initialMessage = [{ role: "model", parts: [{ text: "Hello! I'm your AI assistant. How can I help you today?" }] }];
         setMessages(initialMessage);
