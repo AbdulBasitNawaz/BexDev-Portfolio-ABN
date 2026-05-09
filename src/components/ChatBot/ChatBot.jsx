@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import "./ChatBot.css";
+import RefreshIcon from "../../assets/RefreshIcon.gif";
+import RefreshStatic from "../../assets/RefreshIcon.png";
+import SubmitIcon from "../../assets/SubmitIcon.png";
+import CrossIcon from "../../assets/CrossIcon.gif";
+import CrossStatic from "../../assets/CrossIcon.png";
 import { KNOWLEDGE_BASE, FOLLOW_UP_MAP, INITIAL_ACTIONS, KEYWORD_INTENTS, SUB_KEYWORD_INTENTS } from "./chatData";
 
 export const ChatBot = () => {
@@ -143,17 +148,15 @@ export const ChatBot = () => {
             {isOpen && (
                 <div className="chatbot-window">
                     <div className="chatbot-header">
-                        <h3>AI Assistant</h3>
+                        <h3>{"<BexDev />"}</h3>
                         <div className="header-actions">
                             <button className="reset-btn" onClick={resetChat} title="New Chat">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4 4V9H9M20 20V15H15M20 9C18.5 5 15 2 12 2C7.5 2 4 5.5 4 10M4 14C5.5 19 9 22 12 22C16.5 22 20 18.5 20 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
+                                <img className="static-img" src={RefreshStatic} alt="Reset" />
+                                <img className="hover-gif" src={RefreshIcon} alt="Reset" />
                             </button>
                             <button className="close-btn" onClick={() => setIsOpen(false)}>
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
+                                <img className="static-img" src={CrossStatic} alt="Close" />
+                                <img className="hover-gif" src={CrossIcon} alt="Close" />
                             </button>
                         </div>
                     </div>
@@ -213,9 +216,7 @@ export const ChatBot = () => {
                             onChange={(e) => setInput(e.target.value)}
                         />
                         <button type="submit" disabled={!input.trim() || isTyping}>
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22 2L11 13M22 2L15 22L11 13M11 13L2 9L22 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
+                            <img src={SubmitIcon} alt="Send" />
                         </button>
                     </form>
                 </div>

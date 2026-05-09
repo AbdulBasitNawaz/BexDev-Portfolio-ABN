@@ -60,8 +60,10 @@
 
 .chatbot-header h3 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--accent-color);
 }
 
 .header-actions {
@@ -71,7 +73,7 @@
 }
 
 .close-btn, .reset-btn {
-    background: rgba(0, 0, 0, 0.05);
+    background: transparent;
     border: none;
     cursor: pointer;
     color: inherit;
@@ -85,24 +87,37 @@
 }
 
 [data-theme='dark'] .close-btn, [data-theme='dark'] .reset-btn {
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
 }
 
-.close-btn:hover {
-    background: #ff4d4d;
-    color: white;
-    transform: rotate(90deg);
+.close-btn:hover, .reset-btn:hover {
+    background: transparent !important;
+    transform: none !important;
 }
 
-.reset-btn:hover {
-    background: var(--accent-color, #1a1a1a);
-    color: white;
-    transform: rotate(-180deg);
+.close-btn .static-img, .close-btn .hover-gif,
+.reset-btn .static-img, .reset-btn .hover-gif {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
 }
 
-.close-btn svg, .reset-btn svg {
-    width: 18px;
-    height: 18px;
+.close-btn .hover-gif, .reset-btn .hover-gif {
+    display: none;
+}
+
+.close-btn:hover .static-img, .reset-btn:hover .static-img {
+    display: none;
+}
+
+.close-btn:hover .hover-gif, .reset-btn:hover .hover-gif {
+    display: block;
+}
+
+[data-theme='dark'] .close-btn img, [data-theme='dark'] .reset-btn img {
+    filter: brightness(1) invert(1);
+    mix-blend-mode: screen;
 }
 
 .chatbot-messages {
@@ -219,21 +234,35 @@
 }
 
 .chatbot-input button {
-    background: #1a1a1a;
-    color: white;
+    background: transparent;
     border: none;
-    border-radius: 12px;
-    width: 40px;
-    height: 40px;
+    cursor: pointer;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     transition: transform 0.2s;
 }
 
-.chatbot-input button:hover:not(:disabled) {
-    transform: translateY(-2px);
+.chatbot-input button img {
+    width: 28px; /* Increased size */
+    height: 28px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: brightness(0); /* Black in Light Mode */
+}
+
+[data-theme='dark'] .chatbot-input button img {
+    filter: brightness(0) invert(1); /* White in Dark Mode */
+}
+
+.chatbot-input button:hover:not(:disabled) img {
+    transform: translateX(3px) scale(1.1);
+}
+
+.chatbot-input button:hover {
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
 .chatbot-input button:disabled {
