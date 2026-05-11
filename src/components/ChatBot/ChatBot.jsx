@@ -7,6 +7,7 @@ import SubmitIcon from "../../assets/SubmitIcon.png";
 import CrossIcon from "../../assets/CrossIcon.gif";
 import CrossStatic from "../../assets/CrossIcon.png";
 import { KNOWLEDGE_BASE, FOLLOW_UP_MAP, INITIAL_ACTIONS, KEYWORD_INTENTS, SUB_KEYWORD_INTENTS } from "./chatData";
+import LiveCounter from "../Common/LiveCounter";
 
 export const ChatBot = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -137,6 +138,7 @@ export const ChatBot = () => {
 
     return (
         <div className="chatbot-container">
+            {!isOpen && <LiveCounter />}
             {!isOpen && (
                 <button className="chatbot-trigger" onClick={() => setIsOpen(true)}>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
