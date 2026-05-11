@@ -15,6 +15,7 @@ export function Skills() {
         let ctx = gsap.context(() => {
             const cards = gsap.utils.toArray(".skill-card-anim");
             
+            // Cards Animation Trigger (Scrubs as the section scrolls into position)
             gsap.fromTo(cards, 
                 {
                     x: "100vw",
@@ -22,18 +23,16 @@ export function Skills() {
                 },
                 {
                     scrollTrigger: {
-                        id: "skills-trigger",
                         trigger: sectionRef.current,
-                        pin: true,
-                        scrub: 1,
-                        start: "top 10%",
-                        end: "+=1500"
+                        start: "top 90%",
+                        end: "top 20%",
+                        scrub: 0.5, // Reduced from 1 for snappier response
                     },
                     x: 0,
                     opacity: 1,
-                    duration: 1,
-                    stagger: 0.2,
-                    ease: "power2.out"
+                    stagger: 0.1, // Reduced stagger for smoother group entry
+                    ease: "none", // 'none' is often smoother for scrub animations
+                    force3D: true,
                 }
             );
         }, sectionRef);

@@ -17,6 +17,8 @@
     border-radius: 16px;
     padding: 28px 24px;
     transition: border-color 0.3s;
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .skill-cat {
