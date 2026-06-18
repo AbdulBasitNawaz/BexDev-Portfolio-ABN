@@ -18,6 +18,8 @@ const imageMap = {
     "project4.png": proj4,
 };
 
+const SHOW_PROJECTS = false; // Set to true to restore the original projects carousel
+
 export function Projects() {
     const [activeTab, setActiveTab] = useState("deployed");
     const trackRef = useRef(null);
@@ -49,6 +51,7 @@ export function Projects() {
     };
 
     useEffect(() => {
+        if (!SHOW_PROJECTS) return;
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
         window.addEventListener("resize", handleResize);
         
@@ -69,82 +72,92 @@ export function Projects() {
                         <SectionHeader tag="portfolio_archives" title="Selected Projects" />
                     </div>
                     
-                    <div className="header-right">
-                        <div className="tab-switcher">
-                            <button 
-                                className={`tab-btn ${activeTab === "deployed" ? "active" : ""}`}
-                                onClick={() => setActiveTab("deployed")}
-                            >
-                                Deployed
-                            </button>
-                            <button 
-                                className={`tab-btn ${activeTab === "future" ? "active" : ""}`}
-                                onClick={() => setActiveTab("future")}
-                            >
-                                Coming Soon
-                            </button>
-                        </div>
+                    {SHOW_PROJECTS && (
+                        <div className="header-right">
+                            <div className="tab-switcher">
+                                <button 
+                                    className={`tab-btn ${activeTab === "deployed" ? "active" : ""}`}
+                                    onClick={() => setActiveTab("deployed")}
+                                >
+                                    Deployed
+                                </button>
+                                <button 
+                                    className={`tab-btn ${activeTab === "future" ? "active" : ""}`}
+                                    onClick={() => setActiveTab("future")}
+                                >
+                                    Coming Soon
+                                </button>
+                            </div>
 
-                        <div className="carousel-controls">
-                            <button 
-                                className={`control-btn prev ${!canScrollLeft ? "disabled" : ""}`}
-                                onClick={() => scroll("prev")}
-                                disabled={!canScrollLeft}
-                            >
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                            </button>
-                            <button 
-                                className={`control-btn next ${!canScrollRight ? "disabled" : ""}`}
-                                onClick={() => scroll("next")}
-                                disabled={!canScrollRight}
-                            >
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                            </button>
+                            <div className="carousel-controls">
+                                <button 
+                                    className={`control-btn prev ${!canScrollLeft ? "disabled" : ""}`}
+                                    onClick={() => scroll("prev")}
+                                    disabled={!canScrollLeft}
+                                >
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </button>
+                                <button 
+                                    className={`control-btn next ${!canScrollRight ? "disabled" : ""}`}
+                                    onClick={() => scroll("next")}
+                                    disabled={!canScrollRight}
+                                >
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </FadeIn>
 
-            <div 
-                className="carousel-container" 
-                ref={trackRef}
-                onScroll={checkScroll}
-            >
-                <div className="carousel-track">
-                    {projectsToDisplay.map((p, i) => (
-                        <div className="carousel-item" key={p.title + activeTab}>
-                            <FadeIn delay={i * 0.1} disabled={isMobile}>
-                                <div className="project-card-new">
-                                    <div className="card-image-container">
-                                        {p.image ? (
-                                            <img src={imageMap[p.image]} alt={p.title} className="card-img" />
-                                        ) : (
-                                            <div className="card-img-placeholder">
-                                                <span>COMING SOON</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                    
-                                    <div className="card-content">
-                                        <span className="cat-tag-new">{p.category}</span>
-                                        <h3 className="card-title-new">{p.title}</h3>
+            {SHOW_PROJECTS ? (
+                <div 
+                    className="carousel-container" 
+                    ref={trackRef}
+                    onScroll={checkScroll}
+                >
+                    <div className="carousel-track">
+                        {projectsToDisplay.map((p, i) => (
+                            <div className="carousel-item" key={p.title + activeTab}>
+                                <FadeIn delay={i * 0.1} disabled={isMobile}>
+                                    <div className="project-card-new">
+                                        <div className="card-image-container">
+                                            {p.image ? (
+                                                <img src={imageMap[p.image]} alt={p.title} className="card-img" />
+                                            ) : (
+                                                <div className="card-img-placeholder">
+                                                    <span>COMING SOON</span>
+                                                </div>
+                                            )}
+                                        </div>
                                         
-                                        <div className="card-action-btn">
-                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                            </svg>
+                                        <div className="card-content">
+                                            <span className="cat-tag-new">{p.category}</span>
+                                            <h3 className="card-title-new">{p.title}</h3>
+                                            
+                                            <div className="card-action-btn">
+                                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </FadeIn>
-                        </div>
-                    ))}
+                                </FadeIn>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <FadeIn delay={0.2}>
+                    <div className="projects-coming-soon">
+                        <div className="coming-soon-text">Coming Soon</div>
+                    </div>
+                </FadeIn>
+            )}
         </section>
     );
 }

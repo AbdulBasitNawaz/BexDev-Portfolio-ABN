@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Hero({ scrollTo }) {
     const [typed, setTyped] = useState("");
-    const roles = ["Full Stack Developer", "Open Source Enthusiast", "API Architect", "React Specialist"];
+    const roles = ["Full Stack Web Solutioner", "DevOps & Automation Engineer", "Cloud Engineer"];
     const roleIdx = useRef(0);
     const charIdx = useRef(0);
     const deleting = useRef(false);
@@ -113,8 +113,7 @@ export function Hero({ scrollTo }) {
                     <span className="cursor" />
                 </div>
                 <p className="hero-desc fade-up delay-4">
-                    I build fast, scalable, and beautifully crafted web applications. From pixel-perfect frontends to resilient backend systems — I ship things that work.
-                </p>
+I build secure, high-performance web apps backed by smart AI automation. From bulletproof cloud infrastructure to seamless systems, I ship things that scale.                </p>
                 <div className="hero-actions fade-up delay-5">
                     <button className="btn-primary" onClick={() => scrollTo("projects")}>View Projects</button>
                     <button className="btn-outline" onClick={() => scrollTo("contact")}>Get In Touch →</button>
@@ -136,7 +135,7 @@ export function Hero({ scrollTo }) {
                 >
                     <div ref={leftCardRef} className="float-card">
                         <div className="float-label">Current Stack</div>
-                        <div className="float-val">React · Node · TS</div>
+                        <div className="float-val">Cloud · AI · Web</div>
                     </div>
                 </div>
 
@@ -147,8 +146,8 @@ export function Hero({ scrollTo }) {
                     className="float-wrapper right" 
                 >
                     <div ref={rightCardRef} className="float-card">
-                        <div className="float-label">Open Source</div>
-                        <div className="float-val">⭐ 12k+ Stars</div>
+                        <div className="float-label">System Accuracy</div>
+                        <div className="float-val">⭐ 99.9%</div>
                     </div>
                 </div>
             </div>

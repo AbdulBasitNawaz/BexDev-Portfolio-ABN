@@ -303,3 +303,13 @@
         flex: 1;
     }
 }
+
+/* Projects Coming Soon Placeholder CSS */
+.projects-coming-soon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    min-height: 280px;
+    width: 100%;
+}

@@ -76,3 +76,21 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Coming Soon Placeholder CSS */
+.skills-coming-soon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 56px;
+    min-height: 280px;
+    width: 100%;
+}
+
+.coming-soon-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}

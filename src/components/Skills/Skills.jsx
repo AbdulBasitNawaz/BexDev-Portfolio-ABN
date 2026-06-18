@@ -8,10 +8,14 @@ import "./Skills.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const SHOW_SKILLS = false; // Set to true to restore the original skills grid
+
 export function Skills() {
     const sectionRef = useRef(null);
 
     useLayoutEffect(() => {
+        if (!SHOW_SKILLS) return;
+
         let ctx = gsap.context(() => {
             const cards = gsap.utils.toArray(".skill-card-anim");
             
@@ -45,21 +49,30 @@ export function Skills() {
             <FadeIn>
                 <SectionHeader tag="tech_stack" title="Tools & Technologies" />
             </FadeIn>
-            <div className="skills-grid">
-                {SKILLS.map((s, i) => (
-                    <div key={s.cat} className="skill-card-anim">
-                        <div className="skill-card">
-                            <div className="skill-cat">{s.cat}</div>
-                            {s.items.map(item => (
-                                <div key={item} className="skill-item">
-                                    <span className="skill-dot" />
-                                    {item}
-                                </div>
-                            ))}
+            
+            {SHOW_SKILLS ? (
+                <div className="skills-grid">
+                    {SKILLS.map((s, i) => (
+                        <div key={s.cat} className="skill-card-anim">
+                            <div className="skill-card">
+                                <div className="skill-cat">{s.cat}</div>
+                                {s.items.map(item => (
+                                    <div key={item} className="skill-item">
+                                        <span className="skill-dot" />
+                                        {item}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
+                    ))}
+                </div>
+            ) : (
+                <FadeIn delay={0.2}>
+                    <div className="skills-coming-soon">
+                        <div className="coming-soon-text">Coming Soon</div>
                     </div>
-                ))}
-            </div>
+                </FadeIn>
+            )}
         </section>
     );
 }

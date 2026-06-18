@@ -43,13 +43,13 @@ export function About() {
             <div className="about-grid">
                 <FadeIn delay={0.1}>
                     <p className="about-text">
-                        Hey, I'm Abdul Basit Nawaz — a full-stack developer with 2+ years turning complex problems into elegant, performant software. I care deeply about code quality, developer experience, and products that genuinely delight users.
+                        Hey, I’m Abdul Basit Nawaz — a software engineer building high-performance web applications and automated digital systems. I focus on creating fast, reliable tech architectures that streamline operations and help businesses scale.
                     </p>
                     <p className="about-text">
-                        My work spans frontend architecture, API design, and DevOps automation. I'm passionate about open source and have contributed to several major projects in the React and Node.js ecosystems.
+                        My expertise spans full-stack engineering, secure network architecture, and bulletproof DevOps automation. Whether it is deploying cloud infrastructure on Linux or designing smart AI workflows, I build systems for maximum uptime.
                     </p>
                     <p className="about-text">
-                        When I'm not coding, I'm writing dev blog posts, mentoring junior developers, or exploring new programming languages.
+                        When I’m not configuring scalable servers or coding interfaces, I am deep-diving into modern software systems engineering or building automation scripts to eliminate repetitive tasks.
                     </p>
                 </FadeIn>
                 <div className="code-block-anim">
@@ -60,19 +60,19 @@ export function About() {
                             &nbsp;<span className="syntax-key">name:</span> <span className="syntax-string">"Abdul Basit Nawaz"</span>,
                         </p>
                         <p className="code-line">
-                            &nbsp;<span className="syntax-key">role:</span> <span className="syntax-string">"Full Stack Dev"</span>,
+                            &nbsp;<span className="syntax-key">role:</span> <span className="syntax-string">"DevOps & Full Stack"</span>,
                         </p>
                         <p className="code-line">
-                            &nbsp;<span className="syntax-key">location:</span> <span className="syntax-string">"San Diego, CA"</span>,
+                            &nbsp;<span className="syntax-key">uptime:</span> <span className="syntax-string">"99.9%"</span>,
                         </p>
                         <p className="code-line">
                             &nbsp;<span className="syntax-key">available:</span> <span className="syntax-literal">true</span>,
                         </p>
                         <p className="code-line">
-                            &nbsp;<span className="syntax-key">coffee:</span> <span className="syntax-literal">Infinity</span>,
+                            &nbsp;<span className="syntax-key">coffee_with_cereals:</span> <span className="syntax-literal">Infinity</span>,
                         </p>
                         <p className="code-line">
-                            &nbsp;<span className="syntax-key">passion:</span> <span className="syntax-string">"clean code"</span>,
+                            &nbsp;<span className="syntax-key">passion:</span> <span className="syntax-string">"Build your software & scale it up"</span>,
                         </p>
                         <p className="code-line">
                             <span className="syntax-keyword">{"}"}</span><span className="syntax-key">;</span>
