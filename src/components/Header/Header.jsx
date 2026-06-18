@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { NAV_LINKS } from "../../constants";
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
+import bdLogo from "../../assets/BDLogo1.png";
+import bdLogoLight from "../../assets/BDLogo1White.png";
 import "./Header.css";
 
 export function Header({ active, setActive, scrollTo }) {
@@ -14,7 +16,10 @@ export function Header({ active, setActive, scrollTo }) {
 
     return (
         <nav className="nav">
-            <div className="logo" onClick={() => { scrollTo("hero"); setActive(""); }}>{"<BexDev />"}</div>
+            <div className="logo" onClick={() => { scrollTo("hero"); setActive(""); }}>
+                <img src={bdLogo} alt="BexDev Logo" className="logo-img logo-dark" />
+                <img src={bdLogoLight} alt="BexDev Logo" className="logo-img logo-light" />
+            </div>
             
             <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
                 {NAV_LINKS.map(n => (

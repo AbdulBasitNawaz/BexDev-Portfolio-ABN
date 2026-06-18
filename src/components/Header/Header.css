@@ -7,7 +7,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 64px;
+    height: 84px;
+    padding: 0 64px;
     background: var(--header-bg);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
@@ -15,10 +16,31 @@
 }
 
 .logo {
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 58px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+.logo-light {
+    display: none;
+}
+
+[data-theme='light'] .logo-dark {
+    display: none;
+}
+
+[data-theme='light'] .logo-light {
+    display: block;
 }
 
 .nav-links {
@@ -95,7 +117,12 @@
 
 @media (max-width: 768px) {
     .nav {
-        padding: 16px 24px;
+        height: 72px;
+        padding: 0 24px;
+    }
+
+    .logo-img {
+        height: 48px;
     }
 
     .nav-links {

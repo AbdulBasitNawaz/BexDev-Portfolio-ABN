@@ -58,12 +58,27 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.chatbot-header h3 {
-    margin: 0;
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--accent-color);
+.chatbot-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.chatbot-logo {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+}
+
+.chatbot-logo.logo-light {
+    display: none;
+}
+
+[data-theme='light'] .chatbot-logo.logo-dark {
+    display: none;
+}
+
+[data-theme='light'] .chatbot-logo.logo-light {
+    display: block;
 }
 
 .header-actions {

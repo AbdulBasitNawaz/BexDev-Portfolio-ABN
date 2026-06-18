@@ -6,6 +6,8 @@ import RefreshStatic from "../../assets/RefreshIcon.png";
 import SubmitIcon from "../../assets/SubmitIcon.png";
 import CrossIcon from "../../assets/CrossIcon.gif";
 import CrossStatic from "../../assets/CrossIcon.png";
+import bdLogo from "../../assets/BDLogo1.png";
+import bdLogoLight from "../../assets/BDLogo1White.png";
 import { KNOWLEDGE_BASE, FOLLOW_UP_MAP, INITIAL_ACTIONS, KEYWORD_INTENTS, SUB_KEYWORD_INTENTS } from "./chatData";
 import LiveCounter from "../Common/LiveCounter";
 
@@ -150,7 +152,10 @@ export const ChatBot = () => {
             {isOpen && (
                 <div className="chatbot-window">
                     <div className="chatbot-header">
-                        <h3>{"<BexDev />"}</h3>
+                        <div className="chatbot-logo-container">
+                            <img src={bdLogo} alt="BexDev Logo" className="chatbot-logo logo-dark" />
+                            <img src={bdLogoLight} alt="BexDev Logo" className="chatbot-logo logo-light" />
+                        </div>
                         <div className="header-actions">
                             <button className="reset-btn" onClick={resetChat} title="New Chat">
                                 <img className="static-img" src={RefreshStatic} alt="Reset" />

@@ -75,9 +75,9 @@ export const KNOWLEDGE_BASE = {
     "Pricing & Rates": "Rates are discussion-based depending on project scope and impact. Reach out via contact to discuss a custom quote.",
 
     "Contact & Socials": "How would you like to connect? He is available across all major platforms.",
-    "GitHub Link": "You can explore his open-source work at github.com/your-username (replace with actual link).",
-    "LinkedIn Profile": "Connect professionally at linkedin.com/in/your-profile (replace with actual link).",
-    "Email Address": "Send a direct inquiry to: your-email@example.com",
+    "GitHub Link": "You can explore his open-source work at https://github.com/AbdulBasitNawaz.",
+    "LinkedIn Profile": "Connect professionally at https://www.linkedin.com/in/abdul-basit-nwz-310383278.",
+    "Email Address": "Send a direct inquiry to: abdulbasitnwz@gmail.com",
     "WhatsApp Contact": "Chat directly via WhatsApp: +1234567890"
 };
 

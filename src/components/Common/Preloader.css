@@ -4,7 +4,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: var(--bg-color); /* matches current theme */
+    background-color: #000; /* pure black to support gooey filter contrast */
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -12,15 +12,23 @@
     overflow: hidden;
 }
 
-.preloader-text {
-    opacity: 0;
-    transform: translateY(30px);
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    background: linear-gradient(135deg, var(--text-color) 30%, var(--accent-color));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.loader {
+    width: 80px;
+    aspect-ratio: 1;
+    border: 10px solid #0000;
+    box-sizing: border-box;
+    background: 
+      radial-gradient(farthest-side,#fff 98%,#0000) 0    0/20px 20px,
+      radial-gradient(farthest-side,#fff 98%,#0000) 100% 0/20px 20px,
+      radial-gradient(farthest-side,#fff 98%,#0000) 100% 100%/20px 20px,
+      radial-gradient(farthest-side,#fff 98%,#0000) 0 100%/20px 20px,
+      linear-gradient(#fff 0 0) 50%/40px 40px,
+      #000;
+    background-repeat: no-repeat;
+    filter: blur(4px) contrast(10);
+    animation: l12 0.8s infinite;
+}
+
+@keyframes l12 {
+    100%  {background-position:100% 0,100% 100%,0 100%,0 0,center}
 }
