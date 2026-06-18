@@ -22,6 +22,7 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [active, setActive] = useState("About");
+    const [showResumeNotice, setShowResumeNotice] = useState(false);
 
     const scrollTo = (id) => {
         if (id.toLowerCase() === 'skills') {
@@ -53,14 +54,17 @@ function App() {
             <ParticleWaves />
             <CustomCursor />
             <ScrollToTop />
-            <FloatingCV />
+            <FloatingCV onDownloadClick={() => {
+                setShowResumeNotice(true);
+                scrollTo("contact");
+            }} />
             <ChatBot />
             <Header active={active} setActive={setActive} scrollTo={scrollTo} />
             <Hero scrollTo={scrollTo} />
             <About />
             <Skills />
             <Projects />
-            <Contact />
+            <Contact showResumeNotice={showResumeNotice} onCloseResumeNotice={() => setShowResumeNotice(false)} />
             <Footer />
         </div>
     )

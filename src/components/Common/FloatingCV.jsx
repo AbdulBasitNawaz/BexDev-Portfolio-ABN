@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './FloatingCV.css';
 
-export const FloatingCV = () => {
+export const FloatingCV = ({ onDownloadClick }) => {
     const hitAreaRef = useRef(null);
     const arrowRef = useRef(null);
     const contentRef = useRef(null);
@@ -73,9 +73,9 @@ export const FloatingCV = () => {
     }, []);
 
     const handleClick = (e) => {
-        // If not expanded, expand it first and prevent download
+        e.preventDefault();
+        // If not expanded, expand it first
         if (!isExpanded) {
-            e.preventDefault();
             setIsExpanded(true);
             gsap.to(arrowRef.current, {
                 xPercent: 0,
@@ -92,8 +92,11 @@ export const FloatingCV = () => {
                 overwrite: "auto"
             });
             gsap.to(".cv-vertical-text", { opacity: 0, duration: 0.2, overwrite: "auto" });
+        } else {
+            if (onDownloadClick) {
+                onDownloadClick();
+            }
         }
-        // If already expanded, let the default download behavior happen
     };
 
     return (

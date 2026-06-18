@@ -74,3 +74,131 @@
         padding: 64px 24px;
     }
 }
+
+/* Resume Notice Card Styling */
+.resume-notice-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+    text-align: left;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+    animation: slideDownFade 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slideDownFade {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.resume-notice-content {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.resume-notice-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(127, 255, 178, 0.12);
+    border-radius: 50%;
+    padding: 8px;
+    color: var(--accent-color);
+    flex-shrink: 0;
+}
+
+/* For light mode adjustments if needed */
+[data-theme='light'] .resume-notice-icon {
+    background: rgba(0, 171, 85, 0.12);
+}
+
+.notice-svg {
+    width: 24px;
+    height: 24px;
+}
+
+.resume-notice-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.resume-notice-details h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin: 0;
+}
+
+.resume-notice-details p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    opacity: 0.9;
+    margin: 0;
+}
+
+.resume-email-link {
+    color: var(--accent-color);
+    text-decoration: underline;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+.resume-email-link:hover {
+    opacity: 0.8;
+}
+
+.resume-notice-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+    margin-left: 12px;
+}
+
+.resume-notice-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent-color);
+}
+
+[data-theme='light'] .resume-notice-close:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.close-svg {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 600px) {
+    .resume-notice-card {
+        padding: 16px;
+    }
+    .resume-notice-content {
+        gap: 12px;
+    }
+    .notice-svg {
+        width: 20px;
+        height: 20px;
+    }
+}
