@@ -39,7 +39,7 @@ const TECH_STACK = [
 ];
 
 // Individual 3D floating card component
-function SkillCard3D({ tech, position, parentRotation }) {
+function SkillCard3D({ tech, position, parentRotation, isMobile }) {
     const meshRef = useRef();
     const [hovered, setHovered] = useState(false);
 
@@ -176,7 +176,7 @@ function SkillCard3D({ tech, position, parentRotation }) {
             gsap.to(meshRef.current.position, {
                 x: position[0],
                 y: position[1],
-                z: 1.5,
+                z: isMobile ? 1.0 : 1.5,
                 duration: 0.6,
                 ease: "power3.out",
                 overwrite: "auto"
@@ -226,7 +226,7 @@ function SkillCard3D({ tech, position, parentRotation }) {
             onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
             onPointerOut={() => setHovered(false)}
         >
-            <planeGeometry args={[1.725, 2.185]} />
+            <planeGeometry args={[isMobile ? 1.15 : 1.725, isMobile ? 1.46 : 2.185]} />
             <meshBasicMaterial map={texture} transparent side={THREE.DoubleSide} />
         </mesh>
     );
@@ -249,8 +249,8 @@ function SkillsScene() {
     // Calculate grid positions for the 13 cards dynamically
     // Desktop: 5 columns. Mobile: 3 columns.
     const gridPositions = useMemo(() => {
-        const colWidth = isMobile ? 2.1 : 2.5;
-        const rowHeight = isMobile ? 2.6 : 2.9;
+        const colWidth = isMobile ? 1.45 : 2.5;
+        const rowHeight = isMobile ? 1.8 : 2.9;
 
         if (isMobile) {
             // Mobile: 3 per row (3, 3, 3, 3, 1)
@@ -300,6 +300,7 @@ function SkillsScene() {
                     tech={tech}
                     position={gridPositions[i]}
                     parentRotation={parentRotation}
+                    isMobile={isMobile}
                 />
             ))}
         </group>
@@ -308,17 +309,26 @@ function SkillsScene() {
 
 export function Skills() {
     const sectionRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return (
         <section id="skills" className="skills-section" ref={sectionRef} style={{ position: "relative" }}>
             <FadeIn>
                 <SectionHeader tag="tech_stack" title="Tools & Technologies" />
             </FadeIn>
-
+            
             <FadeIn delay={0.25}>
                 <div className="skills-canvas-container">
-                    <Canvas
-                        camera={{ position: [0, 0, 8.5], fov: 60 }}
+                    <Canvas 
+                        camera={{ position: [0, 0, isMobile ? 10.5 : 8.5], fov: 60 }}
                     >
                         <ambientLight intensity={1.5} />
                         <pointLight position={[10, 10, 10]} intensity={1.2} />
