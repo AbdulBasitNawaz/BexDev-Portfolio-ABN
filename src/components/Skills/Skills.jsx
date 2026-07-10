@@ -162,6 +162,13 @@ function SkillCard3D({ tech, position, parentRotation, isMobile }) {
     useEffect(() => {
         if (!meshRef.current) return;
 
+        const isEdgeCard = tech.name === "Tailwind CSS" || tech.name === "Git" || tech.name === "Streamlit" || tech.name === "AWS";
+
+        // Kill any running animations on this mesh to prevent jumps/glitches
+        gsap.killTweensOf(meshRef.current.rotation);
+        gsap.killTweensOf(meshRef.current.position);
+        gsap.killTweensOf(meshRef.current.scale);
+
         if (hovered) {
             // Cancel out parent rotation and stand facing camera flat
             gsap.to(meshRef.current.rotation, {
@@ -169,26 +176,23 @@ function SkillCard3D({ tech, position, parentRotation, isMobile }) {
                 y: -parentRotation[1],
                 z: -parentRotation[2],
                 duration: 0.6,
-                ease: "power3.out",
-                overwrite: "auto"
+                ease: "power3.out"
             });
             // Float closer to the viewer
             gsap.to(meshRef.current.position, {
                 x: position[0],
                 y: position[1],
-                z: isMobile ? 1.0 : 1.5,
+                z: isMobile ? 1.0 : (isEdgeCard ? 0.8 : 1.5),
                 duration: 0.6,
-                ease: "power3.out",
-                overwrite: "auto"
+                ease: "power3.out"
             });
             // Scale up card
             gsap.to(meshRef.current.scale, {
-                x: 1.15,
-                y: 1.15,
-                z: 1.15,
+                x: isMobile ? 1.0 : (isEdgeCard ? 1.06 : 1.15),
+                y: isMobile ? 1.0 : (isEdgeCard ? 1.06 : 1.15),
+                z: isMobile ? 1.0 : (isEdgeCard ? 1.06 : 1.15),
                 duration: 0.6,
-                ease: "power3.out",
-                overwrite: "auto"
+                ease: "power3.out"
             });
         } else {
             // Return back to default grid structure
@@ -197,27 +201,24 @@ function SkillCard3D({ tech, position, parentRotation, isMobile }) {
                 y: 0,
                 z: 0,
                 duration: 0.5,
-                ease: "power2.inOut",
-                overwrite: "auto"
+                ease: "power2.inOut"
             });
             gsap.to(meshRef.current.position, {
                 x: position[0],
                 y: position[1],
                 z: position[2],
                 duration: 0.5,
-                ease: "power2.inOut",
-                overwrite: "auto"
+                ease: "power2.inOut"
             });
             gsap.to(meshRef.current.scale, {
                 x: 1.0,
                 y: 1.0,
                 z: 1.0,
                 duration: 0.5,
-                ease: "power2.inOut",
-                overwrite: "auto"
+                ease: "power2.inOut"
             });
         }
-    }, [hovered, position, parentRotation]);
+    }, [hovered, position, parentRotation, isMobile, tech.name]);
 
     return (
         <mesh
@@ -225,6 +226,10 @@ function SkillCard3D({ tech, position, parentRotation, isMobile }) {
             position={position}
             onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
             onPointerOut={() => setHovered(false)}
+            onClick={(e) => {
+                e.stopPropagation();
+                setHovered(!hovered);
+            }}
         >
             <planeGeometry args={[isMobile ? 1.15 : 1.725, isMobile ? 1.46 : 2.185]} />
             <meshBasicMaterial map={texture} transparent side={THREE.DoubleSide} />
