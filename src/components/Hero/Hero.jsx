@@ -119,7 +119,7 @@ I build secure, high-performance web apps backed by smart AI automation. From bu
                     <button className="btn-outline" onClick={() => scrollTo("contact")}>Get In Touch →</button>
                 </div>
                 <div className="stat-row fade-up delay-6">
-                    {[["6+", "Tech Stacks"], ["48", "Repos Created"], ["12k+", "Lines of Code"]].map(([n, l]) => (
+                    {[["6+", "Tech Stacks"], ["30+", "Repos Created"], ["12k+", "Lines of Code"]].map(([n, l]) => (
                         <div key={l}>
                             <div className="stat-num">{n}</div>
                             <div className="stat-label">{l}</div>

@@ -73,9 +73,9 @@ export const FloatingCV = ({ onDownloadClick }) => {
     }, []);
 
     const handleClick = (e) => {
-        e.preventDefault();
         // If not expanded, expand it first
         if (!isExpanded) {
+            e.preventDefault();
             setIsExpanded(true);
             gsap.to(arrowRef.current, {
                 xPercent: 0,
@@ -103,7 +103,8 @@ export const FloatingCV = ({ onDownloadClick }) => {
         <div className="floating-cv-container" ref={hitAreaRef}>
             <a 
                 href="/resume.pdf" 
-                download="Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="floating-cv-arrow"
                 ref={arrowRef}
                 onClick={handleClick}
@@ -126,7 +127,7 @@ export const FloatingCV = ({ onDownloadClick }) => {
                     </svg>
                 </div>
                 <div className="cv-arrow-body" ref={contentRef}>
-                    <span className="cv-text">Download Resume</span>
+                    <span className="cv-text">View Resume</span>
                 </div>
             </a>
         </div>

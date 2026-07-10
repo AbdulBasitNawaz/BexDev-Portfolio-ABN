@@ -1,6 +1,8 @@
 .skills-section {
     padding: 110px 64px;
-    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    overflow: visible;
 }
 
 
@@ -77,20 +79,33 @@
     }
 }
 
-/* Coming Soon Placeholder CSS */
-.skills-coming-soon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 56px;
-    min-height: 280px;
+/* 3D Skills Canvas Container */
+.skills-canvas-container {
     width: 100%;
+    height: 720px;
+    margin-top: 30px;
+    position: relative;
+    outline: none;
+    cursor: none !important; /* Keep custom cursor */
 }
 
-.coming-soon-text {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+/* Ensure canvas takes full size of container */
+.skills-canvas-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    outline: none;
 }
+
+@media (max-width: 1024px) {
+    .skills-canvas-container {
+        height: 550px;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-canvas-container {
+        height: 480px;
+    }
+}
+

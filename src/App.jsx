@@ -54,10 +54,7 @@ function App() {
             <ParticleWaves />
             <CustomCursor />
             <ScrollToTop />
-            <FloatingCV onDownloadClick={() => {
-                setShowResumeNotice(true);
-                scrollTo("contact");
-            }} />
+            <FloatingCV />
             <ChatBot />
             <Header active={active} setActive={setActive} scrollTo={scrollTo} />
             <Hero scrollTo={scrollTo} />

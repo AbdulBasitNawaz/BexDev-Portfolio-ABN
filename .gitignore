@@ -2,3 +2,11 @@ node_modules/
 dist/
 .env
 .vscode/
+
+# Antigravity specific
+antigravityignore
+.antigravityignore
+deployent_checklist.md
+deployment_checklist.md
+VERSION_12_STATE.md
+.VERSION_12_STATE.md
