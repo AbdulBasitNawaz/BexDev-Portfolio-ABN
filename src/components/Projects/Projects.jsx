@@ -1,27 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FadeIn } from "../Common/FadeIn";
-import { LIVE_PROJECTS, FUTURE_PROJECTS } from "../../constants";
+import { LIVE_PROJECTS, FUTURE_PROJECTS, AZURIO_PROJECTS } from "../../constants";
 import SectionHeader from "../Common/SectionHeader";
 import { gsap } from "gsap";
 import "./Projects.css";
 
 // Import project images
-import proj1 from "../../assets/project1.avif";
-import proj2 from "../../assets/project2.png";
-import proj3 from "../../assets/project3.webp";
-import proj4 from "../../assets/project4.png";
+import projectGym from "../../assets/ProjectGym1.jpeg";
+import projectLeedOrg from "../../assets/ProjectLeedOrg1.png";
+import projectTypido from "../../assets/ProjectTypido.jpeg";
+import projectCalculator from "../../assets/ProjectCalculator.jpeg";
+import projectReqoAssistant from "../../assets/ProjectReqoAssistant1.png";
 
 const imageMap = {
-    "project1.avif": proj1,
-    "project2.png": proj2,
-    "project3.webp": proj3,
-    "project4.png": proj4,
+    "ProjectGym1.jpeg": projectGym,
+    "ProjectLeedOrg1.png": projectLeedOrg,
+    "ProjectTypido.jpeg": projectTypido,
+    "ProjectCalculator.jpeg": projectCalculator,
+    "ProjectReqoAssistant1.png": projectReqoAssistant,
 };
 
 const SHOW_PROJECTS = false; // Set to true to restore the original projects carousel
 
 export function Projects() {
     const [activeTab, setActiveTab] = useState("deployed");
+    const [showAll, setShowAll] = useState(false);
     const trackRef = useRef(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
@@ -152,11 +155,43 @@ export function Projects() {
                     </div>
                 </div>
             ) : (
-                <FadeIn delay={0.2}>
-                    <div className="projects-coming-soon">
-                        <div className="coming-soon-text">Coming Soon</div>
+                <div className="azurio-projects-wrapper">
+                    <div className="azurio-projects-list">
+                        {AZURIO_PROJECTS.slice(0, showAll ? undefined : 4).map((p, i) => (
+                            <FadeIn delay={0.2} key={p.title}>
+                                <div className="azurio-project-block">
+                                    <div className="azurio-project-image">
+                                        {imageMap[p.image] ? (
+                                            <img src={imageMap[p.image]} alt={p.title} />
+                                        ) : (
+                                            <div className="card-img-placeholder" style={{ width: '100%', height: '100%' }}>
+                                                <span>COMING SOON</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="azurio-project-info">
+                                        <h2 className="azurio-project-title">{p.title}</h2>
+                                        <div className="azurio-project-tags">
+                                            {p.tags.map(tag => (
+                                                <span key={tag} className="azurio-tag">{tag}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </FadeIn>
+                        ))}
                     </div>
-                </FadeIn>
+                    {AZURIO_PROJECTS.length > 4 && (
+                        <div className="show-more-container">
+                            <button 
+                                className="show-more-btn"
+                                onClick={() => setShowAll(!showAll)}
+                            >
+                                {showAll ? "SHOW LESS" : "SHOW MORE PROJECTS"}
+                            </button>
+                        </div>
+                    )}
+                </div>
             )}
         </section>
     );

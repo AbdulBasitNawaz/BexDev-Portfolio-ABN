@@ -304,12 +304,131 @@
     }
 }
 
-/* Projects Coming Soon Placeholder CSS */
-.projects-coming-soon {
+/* Azurio Projects List Styling */
+.azurio-projects-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 120px 64px; /* Vertical and horizontal spacing */
+    margin-top: 64px;
+    width: 100%;
+}
+
+.azurio-project-block {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.azurio-project-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #f5f5f5;
+    position: relative;
+}
+
+[data-theme='dark'] .azurio-project-image {
+    background: #111;
+}
+
+.azurio-project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.azurio-project-block:hover .azurio-project-image img {
+    transform: scale(1.04);
+}
+
+.azurio-project-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.azurio-project-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-color);
+    margin: 0;
+    max-width: 60%;
+    text-transform: uppercase;
+}
+
+.azurio-project-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.azurio-tag {
+    font-size: 0.85rem;
+    font-family: monospace;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.show-more-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 32px;
-    min-height: 280px;
+    margin-top: 120px;
     width: 100%;
+}
+
+.show-more-btn {
+    padding: 12px 24px;
+    font-size: 0.95rem; /* Smaller text */
+    font-weight: 500; /* Less bold */
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: transparent;
+    color: var(--text-color);
+    border: none; /* No border or lines */
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    opacity: 0.7; /* Sober, slightly faded look */
+}
+
+.show-more-btn:hover {
+    background: transparent;
+    opacity: 1; /* Subtle hover effect */
+    color: var(--text-color);
+}
+
+/* Responsiveness for Azurio layout */
+@media (max-width: 1024px) {
+    .azurio-projects-list {
+        grid-template-columns: 1fr;
+        gap: 120px;
+    }
+    .azurio-project-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .azurio-project-info {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .azurio-project-tags {
+        align-items: flex-start;
+    }
+    .azurio-project-title {
+        font-size: 2rem;
+        max-width: 100%;
+    }
+    .azurio-projects-list {
+        gap: 80px;
+    }
 }

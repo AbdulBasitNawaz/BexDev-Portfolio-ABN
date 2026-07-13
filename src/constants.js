@@ -72,3 +72,31 @@ export const SKILLS = [
     { cat: "DevOps", items: ["Docker", "Kubernetes", "AWS", "CI/CD"] },
     { cat: "Databases", items: ["PostgreSQL", "MongoDB", "Redis", "Supabase"] },
 ];
+
+export const AZURIO_PROJECTS = [
+    {
+        title: "Reqo Assistant",
+        tags: ["PYTHON", "AI", "NLP", "REACT JS"],
+        image: "ProjectReqoAssistant1.png",
+    },
+    {
+        title: "Leed Org",
+        tags: ["NEXT JS", "FIREBASE", "GSAP", "CSS MODULES"],
+        image: "ProjectLeedOrg1.png",
+    },
+    {
+        title: "Gym Management",
+        tags: ["REACT JS", "EXPRESS", "POSTGRESQL", "MATERIAL UI"],
+        image: "ProjectGym1.jpeg",
+    },
+    {
+        title: "Typido",
+        tags: ["REACT JS", "NODE JS", "MONGODB", "TAILWIND"],
+        image: "ProjectTypido.jpeg",
+    },
+    {
+        title: "Calculator App",
+        tags: ["HTML", "CSS", "VANILLA JS", "FIGMA"],
+        image: "ProjectCalculator.jpeg",
+    }
+];

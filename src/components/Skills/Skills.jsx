@@ -39,9 +39,9 @@ const TECH_STACK = [
 ];
 
 // Individual 3D floating card component
-function SkillCard3D({ tech, position, parentRotation, isMobile }) {
+function SkillCard3D({ tech, position, parentRotation, isMobile, activeCard, setActiveCard }) {
     const meshRef = useRef();
-    const [hovered, setHovered] = useState(false);
+    const hovered = activeCard === tech.name;
 
     // Persistent canvas and texture to avoid memory leaks and flickering
     const { canvas, ctx, texture } = useMemo(() => {
@@ -131,11 +131,7 @@ function SkillCard3D({ tech, position, parentRotation, isMobile }) {
             const img = new Image();
             img.onload = () => {
                 loadedImgRef.current = img;
-                // Use a functional update to ensure we draw with the latest hovered state
-                setHovered((currentHovered) => {
-                    drawCardState(img, currentHovered);
-                    return currentHovered;
-                });
+                drawCardState(img, hovered);
             };
             img.src = tech.logo;
         }
@@ -224,21 +220,28 @@ function SkillCard3D({ tech, position, parentRotation, isMobile }) {
         <mesh
             ref={meshRef}
             position={position}
-            onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-            onPointerOut={() => setHovered(false)}
+            onPointerOver={(e) => { 
+                e.stopPropagation(); 
+                if (!isMobile) setActiveCard(tech.name); 
+            }}
+            onPointerOut={() => { 
+                if (!isMobile) setActiveCard(null); 
+            }}
             onClick={(e) => {
                 e.stopPropagation();
-                setHovered(!hovered);
+                if (isMobile) {
+                    setActiveCard(activeCard === tech.name ? null : tech.name);
+                }
             }}
         >
-            <planeGeometry args={[isMobile ? 1.15 : 1.725, isMobile ? 1.46 : 2.185]} />
+            <planeGeometry args={[isMobile ? 0.99 : 1.55, isMobile ? 1.26 : 1.96]} />
             <meshBasicMaterial map={texture} transparent side={THREE.DoubleSide} />
         </mesh>
     );
 }
 
 // Parent 3D scene grid wrapper
-function SkillsScene() {
+function SkillsScene({ activeCard, setActiveCard }) {
     // 3D group container rotation represents the isometric view angle
     const parentRotation = [0.25, -0.35, 0];
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -254,7 +257,7 @@ function SkillsScene() {
     // Calculate grid positions for the 13 cards dynamically
     // Desktop: 5 columns. Mobile: 3 columns.
     const gridPositions = useMemo(() => {
-        const colWidth = isMobile ? 1.45 : 2.5;
+        const colWidth = isMobile ? 1.4 : 2.5;
         const rowHeight = isMobile ? 1.8 : 2.9;
 
         if (isMobile) {
@@ -306,6 +309,8 @@ function SkillsScene() {
                     position={gridPositions[i]}
                     parentRotation={parentRotation}
                     isMobile={isMobile}
+                    activeCard={activeCard}
+                    setActiveCard={setActiveCard}
                 />
             ))}
         </group>
@@ -315,6 +320,7 @@ function SkillsScene() {
 export function Skills() {
     const sectionRef = useRef(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [activeCard, setActiveCard] = useState(null);
 
     useEffect(() => {
         const handleResize = () => {
@@ -323,6 +329,19 @@ export function Skills() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    // Close any active card on mobile if user clicks outside of the canvas
+    useEffect(() => {
+        if (!isMobile) return;
+        const handleOutsideClick = (e) => {
+            const canvasContainer = document.querySelector(".skills-canvas-container");
+            if (canvasContainer && !canvasContainer.contains(e.target)) {
+                setActiveCard(null);
+            }
+        };
+        window.addEventListener("click", handleOutsideClick);
+        return () => window.removeEventListener("click", handleOutsideClick);
+    }, [isMobile]);
 
     return (
         <section id="skills" className="skills-section" ref={sectionRef} style={{ position: "relative" }}>
@@ -334,10 +353,11 @@ export function Skills() {
                 <div className="skills-canvas-container">
                     <Canvas 
                         camera={{ position: [0, 0, isMobile ? 10.5 : 8.5], fov: 60 }}
+                        onPointerMissed={() => setActiveCard(null)}
                     >
                         <ambientLight intensity={1.5} />
                         <pointLight position={[10, 10, 10]} intensity={1.2} />
-                        <SkillsScene />
+                        <SkillsScene activeCard={activeCard} setActiveCard={setActiveCard} />
                     </Canvas>
                 </div>
             </FadeIn>
