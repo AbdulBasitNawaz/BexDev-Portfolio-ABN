@@ -98,5 +98,10 @@ export const AZURIO_PROJECTS = [
         title: "Calculator App",
         tags: ["HTML", "CSS", "VANILLA JS", "FIGMA"],
         image: "ProjectCalculator.jpeg",
+    },
+    {
+        title: "Pong Game",
+        tags: ["PYTHON", "GAME DEV"],
+        image: "ProjectPong.png",
     }
 ];

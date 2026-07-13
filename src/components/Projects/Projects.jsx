@@ -11,6 +11,7 @@ import projectLeedOrg from "../../assets/ProjectLeedOrg1.png";
 import projectTypido from "../../assets/ProjectTypido.jpeg";
 import projectCalculator from "../../assets/ProjectCalculator.jpeg";
 import projectReqoAssistant from "../../assets/ProjectReqoAssistant1.png";
+import projectPong from "../../assets/ProjectPong.png";
 
 const imageMap = {
     "ProjectGym1.jpeg": projectGym,
@@ -18,6 +19,7 @@ const imageMap = {
     "ProjectTypido.jpeg": projectTypido,
     "ProjectCalculator.jpeg": projectCalculator,
     "ProjectReqoAssistant1.png": projectReqoAssistant,
+    "ProjectPong.png": projectPong,
 };
 
 const SHOW_PROJECTS = false; // Set to true to restore the original projects carousel
